@@ -94,7 +94,7 @@ skills:
   external-feature: { enabled: false, schedule: "30 16 * * *", var: "" } # proactively enhance watched repos — set var to owner/repo or owner/repo#N
   vuln-scanner: { enabled: false, schedule: "0 16 * * 6", var: "" } # Saturday — audit repos for security vulns, PR fixes
   deploy-prototype: { enabled: false, schedule: "workflow_dispatch", var: "" } # on-demand — build app and deploy to Vercel
-  autoresearch: { enabled: true, schedule: "workflow_dispatch", var: "Agents" } # on-demand — set var to skill name to evolve
+  autoresearch: { enabled: true, schedule: "0 7 * * *", var: "Agents" } # on-demand — set var to skill name to evolve
   create-skill: { enabled: false, schedule: "workflow_dispatch", var: "" } # one-shot skill creator — set var to a description prompt
 
   # --- X / social (5 PM UTC) ---
