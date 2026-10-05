@@ -105,7 +105,7 @@ skills:
   reply-maker: { enabled: false, schedule: "0 17 * * *" }
   remix-tweets: { enabled: false, schedule: "30 17 * * *" } # 10 rephrased versions of random past tweets
   tweet-roundup: { enabled: false, schedule: "0 17 * * *", var: "" } # latest tweets on configurable topics
-  agent-buzz: { enabled: false, schedule: "30 17 * * *", var: "AI" } # top AI agent tweets by influence
+  agent-buzz: { enabled: true, schedule: "30 17 * * *", var: "AI" } # top AI agent tweets by influence
   farcaster-digest: { enabled: false, schedule: "0 17 * * *" } # trending Farcaster casts
   vibecoding-digest: { enabled: false, schedule: "30 17 * * *" } # r/vibecoding trending posts
   channel-recap: { enabled: false, schedule: "0 17 * * 0", var: "" } # weekly — recap from Telegram channel (set var to channel username)
