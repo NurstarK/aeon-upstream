@@ -1,0 +1,165 @@
+{
+  "root": "card_root",
+  "state": {},
+  "elements": {
+    "card_root": {
+      "type": "Card",
+      "props": {
+        "title": "Agent Buzz",
+        "description": "2026-10-05"
+      },
+      "children": [
+        "main_stack"
+      ]
+    },
+    "main_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "subtitle",
+        "sep1",
+        "section1",
+        "sep2",
+        "section2",
+        "sep3",
+        "section3",
+        "sep4",
+        "footer"
+      ]
+    },
+    "subtitle": {
+      "type": "Text",
+      "props": {
+        "text": "A trust-and-plumbing day: regulators fined fake-AI claims, vendors chased the pilot-to-production gap, and agent swarms quietly scaled.",
+        "variant": "lead"
+      }
+    },
+    "sep1": {
+      "type": "Separator"
+    },
+    "section1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "section1_heading",
+        "story1",
+        "story2"
+      ]
+    },
+    "section1_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Trust is the bottleneck",
+        "level": "h2"
+      }
+    },
+    "story1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "FTC fines Cox Media Group $930k for fabricated AI capabilities; AI-washing now carries a price",
+        "href": "https://aiagentstore.ai/ai-agent-news/this-week",
+        "source": "FTC / Cox Media Group"
+      }
+    },
+    "story2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Frontier agents need aviation/nuclear-style layered safety, not a single guardrail",
+        "href": "https://aiagentstore.ai/ai-agent-news/this-week",
+        "source": "David Robinson (ex-OpenAI)"
+      }
+    },
+    "sep2": {
+      "type": "Separator"
+    },
+    "section2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "section2_heading",
+        "story3",
+        "story4"
+      ]
+    },
+    "section2_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "From pilots to production",
+        "level": "h2"
+      }
+    },
+    "story3": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Oracle Fusion Claw ships enterprise agent orchestrator against Gartner's 85%-piloting / 5%-in-production gap",
+        "href": "https://aiagentstore.ai/ai-agent-news/this-week",
+        "source": "Oracle"
+      }
+    },
+    "story4": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Unified.to published 100+ free Agent Skills (SKILL.md) to standardize what agents can actually do",
+        "href": "https://aiagentsdirectory.com/news/ai-agents-news-brief-october-3-2026",
+        "source": "Unified.to"
+      }
+    },
+    "sep3": {
+      "type": "Separator"
+    },
+    "section3": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "section3_heading",
+        "story5",
+        "story6"
+      ]
+    },
+    "section3_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Swarms scale up",
+        "level": "h2"
+      }
+    },
+    "story5": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Moonshot AI Kimi K2.6 self-decides when to fan out to ~1,000 sub-agents; built a SysY compiler in ~10h",
+        "href": "https://www.newsbytesapp.com/news/science/moonshot-ai-announces-kimi-k26-1000-agent-swarm-10-hour-sysy-compiler/tldr",
+        "source": "Moonshot AI"
+      }
+    },
+    "story6": {
+      "type": "StoryLink",
+      "props": {
+        "title": "Progress Agentic RAG: Smart Agent decomposes queries into sub-questions and verifies each against repositories",
+        "href": "https://aiagentsdirectory.com/news/ai-agents-news-brief-october-3-2026",
+        "source": "Progress"
+      }
+    },
+    "sep4": {
+      "type": "Separator"
+    },
+    "footer": {
+      "type": "Text",
+      "props": {
+        "text": "src: websearch (no XAI key — handles/engagement unavailable, article links in place of tweets) · candidates: ~14 → kept: 6",
+        "variant": "caption"
+      }
+    }
+  }
+}
