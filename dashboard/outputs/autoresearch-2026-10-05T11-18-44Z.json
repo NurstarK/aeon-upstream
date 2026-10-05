@@ -1,0 +1,48 @@
+{
+  "root": "card-autoresearch",
+  "state": {},
+  "elements": {
+    "card-autoresearch": {
+      "type": "Card",
+      "props": {
+        "title": "autoresearch"
+      },
+      "children": [
+        "stack-content"
+      ]
+    },
+    "stack-content": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "alert-error",
+        "text-matches",
+        "text-action"
+      ]
+    },
+    "alert-error": {
+      "type": "Alert",
+      "props": {
+        "type": "error",
+        "message": "Skill 'Agents' not found. No skills/Agents/SKILL.md exists."
+      }
+    },
+    "text-matches": {
+      "type": "Text",
+      "props": {
+        "text": "Closest matches: agent-buzz, agent-displacement",
+        "variant": "caption"
+      }
+    },
+    "text-action": {
+      "type": "Text",
+      "props": {
+        "text": "Re-run with var set to an existing skill name.",
+        "variant": "muted"
+      }
+    }
+  }
+}
