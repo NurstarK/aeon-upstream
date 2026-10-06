@@ -17,5 +17,9 @@
     "total_failures": 0,
     "consecutive_failures": 0,
     "success_rate": 1
+  },
+  "heartbeat": {
+    "last_dispatch": "2026-10-06T14:11:22Z",
+    "last_status": "dispatched"
   }
 }
