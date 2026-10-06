@@ -1,0 +1,89 @@
+{
+  "root": "card-root",
+  "state": {},
+  "elements": {
+    "card-root": {
+      "type": "Card",
+      "props": {
+        "title": "Autoresearch",
+        "description": "Skill execution aborted"
+      },
+      "children": [
+        "alert-error",
+        "separator-1",
+        "suggestions"
+      ]
+    },
+    "alert-error": {
+      "type": "Alert",
+      "props": {
+        "title": "Skill not found",
+        "message": "Skill 'Agents' not found. No skills/Agents/SKILL.md exists.",
+        "type": "error"
+      },
+      "children": []
+    },
+    "separator-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "suggestions": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "suggestions-heading",
+        "matches-stack",
+        "instruction"
+      ]
+    },
+    "suggestions-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Closest matches",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "matches-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "match-1",
+        "match-2"
+      ]
+    },
+    "match-1": {
+      "type": "Badge",
+      "props": {
+        "text": "agent-buzz",
+        "variant": "outline"
+      },
+      "children": []
+    },
+    "match-2": {
+      "type": "Badge",
+      "props": {
+        "text": "agent-displacement",
+        "variant": "outline"
+      },
+      "children": []
+    },
+    "instruction": {
+      "type": "Text",
+      "props": {
+        "text": "Re-run with var set to one of those exact skill names.",
+        "variant": "caption"
+      },
+      "children": []
+    }
+  }
+}
