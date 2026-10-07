@@ -1,0 +1,65 @@
+{
+  "root": "card-autoresearch",
+  "state": {},
+  "elements": {
+    "card-autoresearch": {
+      "type": "Card",
+      "props": {
+        "title": "Autoresearch"
+      },
+      "children": [
+        "alert-error",
+        "suggestions-heading",
+        "alternatives-stack",
+        "recovery-text"
+      ]
+    },
+    "alert-error": {
+      "type": "Alert",
+      "props": {
+        "title": "Skill Not Found",
+        "message": "Skill 'Agents' not found. Autoresearch aborted — no skills/Agents/SKILL.md exists.",
+        "type": "error"
+      }
+    },
+    "suggestions-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Closest matches:",
+        "level": "h4"
+      }
+    },
+    "alternatives-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "alternative-1",
+        "alternative-2"
+      ]
+    },
+    "alternative-1": {
+      "type": "StoryLink",
+      "props": {
+        "title": "agent-buzz",
+        "href": "skills/agent-buzz"
+      }
+    },
+    "alternative-2": {
+      "type": "StoryLink",
+      "props": {
+        "title": "agent-displacement",
+        "href": "skills/agent-displacement"
+      }
+    },
+    "recovery-text": {
+      "type": "Text",
+      "props": {
+        "text": "Re-run with var= set to a valid skill directory name.",
+        "variant": "caption"
+      }
+    }
+  }
+}

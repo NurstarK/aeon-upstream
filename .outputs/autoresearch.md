@@ -1,1 +1,1 @@
-Autoresearch aborted: Skill 'Agents' not found. No skills/Agents/SKILL.md exists. Closest matches are 'agent-buzz' and 'agent-displacement' — re-run with var set to one of those exact skill names.
+Skill 'Agents' not found. Autoresearch aborted — no skills/Agents/SKILL.md exists. Closest matches: agent-buzz, agent-displacement. Re-run with var= set to a valid skill directory name.
