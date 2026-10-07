@@ -1,0 +1,115 @@
+{
+  "root": "heartbeat-card",
+  "state": {},
+  "elements": {
+    "heartbeat-card": {
+      "type": "Card",
+      "props": {
+        "title": "🔵 HEARTBEAT",
+        "description": "Agent status monitor"
+      },
+      "children": [
+        "stale-alert",
+        "sep1",
+        "details-stack",
+        "sep2",
+        "action-stack"
+      ]
+    },
+    "stale-alert": {
+      "type": "Alert",
+      "props": {
+        "title": "agent-buzz stale",
+        "message": "Last success 2026-10-05 11:24 UTC (~58h ago), past 2× its daily (30 17) schedule.",
+        "type": "warning"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "details-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "last-success-stat",
+        "schedule-text",
+        "failed-runs-text"
+      ]
+    },
+    "last-success-stat": {
+      "type": "Stat",
+      "props": {
+        "label": "Last successful run",
+        "value": "2026-10-05 11:24 UTC",
+        "delta": "~58 hours ago"
+      }
+    },
+    "schedule-text": {
+      "type": "Text",
+      "props": {
+        "text": "Configured daily schedule: 30 17"
+      }
+    },
+    "failed-runs-text": {
+      "type": "Text",
+      "props": {
+        "text": "Scheduled 17:30 runs on 2026-10-06 and 2026-10-07 have not landed a success in cron-state."
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "action-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "recommendation-text",
+        "status-badges"
+      ]
+    },
+    "recommendation-text": {
+      "type": "Text",
+      "props": {
+        "text": "Worth checking the agent-buzz workflow/dispatch.",
+        "variant": "lead"
+      }
+    },
+    "status-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-p0",
+        "badge-issue"
+      ]
+    },
+    "badge-p0": {
+      "type": "Badge",
+      "props": {
+        "text": "P0 skills all green",
+        "variant": "secondary"
+      }
+    },
+    "badge-issue": {
+      "type": "Badge",
+      "props": {
+        "text": "ISS-001 still open",
+        "variant": "outline"
+      }
+    }
+  }
+}
