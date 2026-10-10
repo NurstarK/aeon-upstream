@@ -10,14 +10,14 @@
     "last_dispatch": "2026-10-10T08:34:02Z"
   },
   "agent-buzz": {
-    "last_status": "success",
+    "last_status": "dispatched",
     "last_success": "2026-10-09T18:59:42Z",
     "total_runs": 3,
     "total_successes": 3,
     "total_failures": 0,
     "consecutive_failures": 0,
     "success_rate": 1,
-    "last_dispatch": "2026-10-09T18:56:21Z"
+    "last_dispatch": "2026-10-10T18:51:41Z"
   },
   "heartbeat": {
     "last_dispatch": "2026-10-10T14:40:48Z",
