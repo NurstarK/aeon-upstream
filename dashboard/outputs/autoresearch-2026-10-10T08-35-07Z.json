@@ -1,0 +1,23 @@
+{
+  "root": "card_main",
+  "state": {},
+  "elements": {
+    "card_main": {
+      "type": "Card",
+      "props": {
+        "title": "autoresearch"
+      },
+      "children": [
+        "alert_error"
+      ]
+    },
+    "alert_error": {
+      "type": "Alert",
+      "props": {
+        "type": "error",
+        "message": "Skill 'Agents' not found."
+      },
+      "children": []
+    }
+  }
+}
