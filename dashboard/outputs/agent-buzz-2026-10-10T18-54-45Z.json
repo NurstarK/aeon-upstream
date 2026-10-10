@@ -1,0 +1,195 @@
+{
+  "root": "card-main",
+  "state": {},
+  "elements": {
+    "card-main": {
+      "type": "Card",
+      "props": {
+        "title": "Agent Buzz — 2026-10-10",
+        "description": "ERROR: No tweet source available"
+      },
+      "children": [
+        "badge-error",
+        "alert-main",
+        "separator-1",
+        "section-issue",
+        "separator-2",
+        "section-context",
+        "separator-3",
+        "section-fix"
+      ]
+    },
+    "badge-error": {
+      "type": "Badge",
+      "props": {
+        "text": "ERROR",
+        "variant": "destructive"
+      }
+    },
+    "alert-main": {
+      "type": "Alert",
+      "props": {
+        "title": "No tweet source available",
+        "message": "XAI_API_KEY is unset, so Grok x_search (the only source returning tweets with engagement counts + status links) can't run. The WebSearch fallback works but returns news roundups, not scored tweets, so the curated feed can't be built without fabricating metadata.",
+        "type": "error"
+      }
+    },
+    "separator-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "section-issue": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading-issue",
+        "text-xai-key",
+        "text-grok",
+        "text-websearch",
+        "text-consequence"
+      ]
+    },
+    "heading-issue": {
+      "type": "Heading",
+      "props": {
+        "text": "Why this matters",
+        "level": "h3"
+      }
+    },
+    "text-xai-key": {
+      "type": "Text",
+      "props": {
+        "text": "XAI_API_KEY is unset, preventing Grok x_search from running."
+      }
+    },
+    "text-grok": {
+      "type": "Text",
+      "props": {
+        "text": "Grok x_search is the only source returning tweets with engagement counts and status links."
+      }
+    },
+    "text-websearch": {
+      "type": "Text",
+      "props": {
+        "text": "The WebSearch fallback returns news roundups, not scored tweets."
+      }
+    },
+    "text-consequence": {
+      "type": "Text",
+      "props": {
+        "text": "Without real engagement data, the curated feed cannot be built without fabricating metadata."
+      }
+    },
+    "separator-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "section-context": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading-context",
+        "text-context-label",
+        "item-sierra",
+        "item-gemini",
+        "item-anthropic",
+        "text-context-note"
+      ]
+    },
+    "heading-context": {
+      "type": "Heading",
+      "props": {
+        "text": "Active today",
+        "level": "h3"
+      }
+    },
+    "text-context-label": {
+      "type": "Text",
+      "props": {
+        "text": "The scene was active despite the API gap:",
+        "variant": "muted"
+      }
+    },
+    "item-sierra": {
+      "type": "Text",
+      "props": {
+        "text": "Sierra/Meta 'Poppy' Personal Agent Protocol draft + 35 partners"
+      }
+    },
+    "item-gemini": {
+      "type": "Text",
+      "props": {
+        "text": "Google's Gemini business agent"
+      }
+    },
+    "item-anthropic": {
+      "type": "Text",
+      "props": {
+        "text": "Anthropic's unintended-actions report"
+      }
+    },
+    "text-context-note": {
+      "type": "Text",
+      "props": {
+        "text": "This is a config gap, not a quiet day.",
+        "variant": "muted"
+      }
+    },
+    "separator-3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "section-fix": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading-fix",
+        "text-fix",
+        "heading-tracking",
+        "badge-issue"
+      ]
+    },
+    "heading-fix": {
+      "type": "Heading",
+      "props": {
+        "text": "Fix",
+        "level": "h3"
+      }
+    },
+    "text-fix": {
+      "type": "Text",
+      "props": {
+        "text": "Set the XAI_API_KEY secret."
+      }
+    },
+    "heading-tracking": {
+      "type": "Heading",
+      "props": {
+        "text": "Tracking",
+        "level": "h3"
+      }
+    },
+    "badge-issue": {
+      "type": "Badge",
+      "props": {
+        "text": "ISS-002",
+        "variant": "outline"
+      }
+    }
+  }
+}
