@@ -1,0 +1,75 @@
+{
+  "root": "card_main",
+  "state": {},
+  "elements": {
+    "card_main": {
+      "type": "Card",
+      "props": {
+        "title": "heartbeat"
+      },
+      "children": [
+        "alert_degraded",
+        "separator1",
+        "stack_details"
+      ]
+    },
+    "alert_degraded": {
+      "type": "Alert",
+      "props": {
+        "type": "error",
+        "title": "🔴 Aeon DEGRADED",
+        "message": "scheduler gap on 2026-10-09"
+      }
+    },
+    "separator1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "stack_details": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "text_heartbeat",
+        "text_autoresearch",
+        "text_buzzagent",
+        "separator2",
+        "text_issue"
+      ]
+    },
+    "text_heartbeat": {
+      "type": "Text",
+      "props": {
+        "text": "🔴 heartbeat last ran 2026-10-08 20:07 UTC (~36h ago, missed all three 10-09 slots)"
+      }
+    },
+    "text_autoresearch": {
+      "type": "Text",
+      "props": {
+        "text": "🔴 autoresearch last ran 2026-10-08 07:16 UTC (~49h ago, missed 10-09 + 10-10 07:00)"
+      }
+    },
+    "text_buzzagent": {
+      "type": "Text",
+      "props": {
+        "text": "agent-buzz did fire 10-09 18:59, so not a total outage — looks like cron scheduling dropped two of three enabled skills for a day"
+      }
+    },
+    "separator2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "text_issue": {
+      "type": "Text",
+      "props": {
+        "text": "ISS-001 (autoresearch no-op config) still open"
+      }
+    }
+  }
+}
