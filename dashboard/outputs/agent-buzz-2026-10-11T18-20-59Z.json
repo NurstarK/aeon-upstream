@@ -1,0 +1,101 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "Agent Buzz",
+        "description": "2026-10-11"
+      },
+      "children": [
+        "alert",
+        "separator",
+        "stack"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "props": {
+        "type": "error",
+        "title": "All Sources Failed",
+        "message": "XAI_API_KEY unset; WebSearch fallback returned only articles, no tweet-level engagement or status links"
+      }
+    },
+    "separator": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "consequence",
+        "context",
+        "fix_row"
+      ]
+    },
+    "consequence": {
+      "type": "Text",
+      "props": {
+        "text": "No curated feed today",
+        "variant": "lead"
+      }
+    },
+    "context": {
+      "type": "Text",
+      "props": {
+        "text": "Third consecutive block",
+        "variant": "muted"
+      }
+    },
+    "fix_row": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "fix_label",
+        "fix_action"
+      ]
+    },
+    "fix_label": {
+      "type": "Text",
+      "props": {
+        "text": "Fix:",
+        "variant": "body"
+      }
+    },
+    "fix_action": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "fix_text",
+        "issue_link"
+      ]
+    },
+    "fix_text": {
+      "type": "Text",
+      "props": {
+        "text": "Set the XAI_API_KEY repo secret",
+        "variant": "body"
+      }
+    },
+    "issue_link": {
+      "type": "Link",
+      "props": {
+        "label": "ISS-002",
+        "href": "#ISS-002"
+      }
+    }
+  }
+}
