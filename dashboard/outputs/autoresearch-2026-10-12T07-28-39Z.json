@@ -1,0 +1,90 @@
+{
+  "root": "card-main",
+  "state": {},
+  "elements": {
+    "card-main": {
+      "type": "Card",
+      "props": {
+        "title": "autoresearch",
+        "description": "Skill execution aborted"
+      },
+      "children": [
+        "alert-error",
+        "separator1",
+        "similar-skills-section",
+        "separator2",
+        "fix-instruction"
+      ]
+    },
+    "alert-error": {
+      "type": "Alert",
+      "props": {
+        "type": "error",
+        "title": "Skill 'Agents' not found",
+        "message": "Autoresearch aborted — no skill directory matches that name."
+      }
+    },
+    "separator1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "similar-skills-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "similar-heading",
+        "skills-stack"
+      ]
+    },
+    "similar-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Closest matches",
+        "level": "h4"
+      }
+    },
+    "skills-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "skill-badge-1",
+        "skill-badge-2"
+      ]
+    },
+    "skill-badge-1": {
+      "type": "Badge",
+      "props": {
+        "text": "agent-buzz",
+        "variant": "outline"
+      }
+    },
+    "skill-badge-2": {
+      "type": "Badge",
+      "props": {
+        "text": "agent-displacement",
+        "variant": "outline"
+      }
+    },
+    "separator2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "fix-instruction": {
+      "type": "Text",
+      "props": {
+        "text": "Set var= to an exact skill directory name to evolve it.",
+        "variant": "lead"
+      }
+    }
+  }
+}
