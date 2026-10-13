@@ -1,0 +1,56 @@
+{
+  "root": "card-main",
+  "state": {},
+  "elements": {
+    "card-main": {
+      "type": "Card",
+      "props": {
+        "title": "agent-buzz",
+        "description": "2026-10-13 (var=AI)"
+      },
+      "children": [
+        "alert-main",
+        "stack-details"
+      ]
+    },
+    "alert-main": {
+      "type": "Alert",
+      "props": {
+        "title": "All sources failed",
+        "type": "error"
+      }
+    },
+    "stack-details": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "text-causes",
+        "text-consecutive",
+        "alert-fix"
+      ]
+    },
+    "text-causes": {
+      "type": "Text",
+      "props": {
+        "text": "XAI_API_KEY still unset (tiers 1–2 unavailable); WebSearch fallback returned only stale tweets (newest late-Aug 2026) with no engagement counts and nothing inside the 24h window — unscoreable without fabricating metadata"
+      }
+    },
+    "text-consecutive": {
+      "type": "Text",
+      "props": {
+        "text": "4th consecutive block"
+      }
+    },
+    "alert-fix": {
+      "type": "Alert",
+      "props": {
+        "title": "Fix required",
+        "message": "Set XAI_API_KEY repo secret (ISS-002)",
+        "type": "warning"
+      }
+    }
+  }
+}
