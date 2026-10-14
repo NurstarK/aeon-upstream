@@ -1,0 +1,76 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "heartbeat"
+      },
+      "children": [
+        "alert",
+        "separator",
+        "findings"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "props": {
+        "title": "🔴 DEGRADED",
+        "message": "Aeon scheduler appears stalled",
+        "type": "error"
+      }
+    },
+    "separator": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "findings": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heartbeat-detail",
+        "autoresearch-detail",
+        "agent-buzz-detail",
+        "pr-detail",
+        "action"
+      ]
+    },
+    "heartbeat-detail": {
+      "type": "Text",
+      "props": {
+        "text": "heartbeat recorded no successful run from 2026-10-10 to just now (~4 days; status page was 4d stale)"
+      }
+    },
+    "autoresearch-detail": {
+      "type": "Text",
+      "props": {
+        "text": "autoresearch hasn't run since 2026-10-12 (>48h)"
+      }
+    },
+    "agent-buzz-detail": {
+      "type": "Text",
+      "props": {
+        "text": "agent-buzz still blocked (ISS-002, XAI_API_KEY unset)"
+      }
+    },
+    "pr-detail": {
+      "type": "Text",
+      "props": {
+        "text": "No open PRs/issues"
+      }
+    },
+    "action": {
+      "type": "Text",
+      "props": {
+        "text": "Check GitHub Actions cron is dispatching on schedule",
+        "variant": "lead"
+      }
+    }
+  }
+}
