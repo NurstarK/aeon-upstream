@@ -1,23 +1,21 @@
-Heartbeat run complete.
+Heartbeat complete.
 
 ## Summary
 
-Ran the `heartbeat` skill for the 2026-10-16 14:49 UTC cycle. **Verdict: 🔴 DEGRADED.**
+Ran the **heartbeat** skill (20:00 UTC slot, fired late at 21:31 UTC). Verdict: **🟡 WATCH** — an improvement from the 🔴 DEGRADED state at the 14:00 run.
 
-**Findings:**
-- **P0 self-check FIRED** — heartbeat's own `last_success` is 2026-10-14T20:49:40Z (~42h ago, past the 36h threshold). No log exists for 10-15; the 10-15 (08/14/20) and 10-16 08:00 scheduled slots never reported back. The GitHub Actions scheduler is still dispatching intermittently.
-- **P3 stale** — `autoresearch` (last success 10-12, >48h) and `agent-buzz` (last success 10-13, >48h), both downstream of the scheduler stall plus their own ISS-001/ISS-002 blocks.
-- No failed/stuck skills, no consecutive-failure streaks; all skills show 100% success at the scheduler level (cron-state records exit-success per run).
+**Checks:**
+- **P0 (clear):** No failed or stuck skills; no skill with ≥3 consecutive failures; all success rates 1.0. The heartbeat self-check that fired at 14:00 has **cleared** — `last_success` is now 2026-10-16 14:51 UTC (~6.6h ago, inside the 36h threshold). The scheduler is recovering: heartbeat (14:48 + this 20:00 run) and agent-buzz (18:26) all dispatched today.
+- **P3 (flag):** autoresearch is still stale — `last_success` 2026-10-12 07:28 (~110h, >2× its daily interval). Root cause: its **07:00 slot** still isn't being dispatched (ISS-003), compounded by the var=Agents misconfig (ISS-001). agent-buzz is now fresh.
+- **P1 (clean):** 0 open PRs, 0 urgent issues.
+- **P2:** No new urgent follow-ups in MEMORY.md.
 
-**Actions taken:**
-- **Filed ISS-003** (high, config): "Scheduler dispatching intermittently." The 10-14 run predicted this would warrant a new issue "if it recurs" — it recurred, so it's now tracked as the root cause behind the stale-skill flags. Added to `memory/issues/INDEX.md`.
-- **Regenerated `docs/status.md`** — Overall 🔴 DEGRADED, Updated 2026-10-16 14:49 UTC, 3 open issues, next run agent-buzz at 17:30 UTC. No token-report files exist, so the Token Pulse section was omitted per spec.
-- **Notification SKIPPED** — all findings were notified 10-14 20:48 (~42h ago, inside the 48h dedup window). Per the "never notify twice" rule, no fresh `./notify` sent; recurrence captured in ISS-003, the log, and the public status page instead. Will re-notify if still degraded past the window.
+**Notification:** Skipped (dedup). The autoresearch-stale / scheduler-stall items are in the last-48h logs and the situation *improved* rather than worsened; the prior commitment was to re-notify only if "still degraded," which no longer holds.
 
 **Files modified:**
-- `docs/status.md` (regenerated)
-- `memory/issues/ISS-003.md` (new)
-- `memory/issues/INDEX.md` (ISS-003 row added)
-- `memory/logs/2026-10-16.md` (new)
+- `docs/status.md` — regenerated: Overall 🟡 WATCH, 3 open issues (ISS-001/002/003), next run autoresearch at 07:00 UTC. Token pulse section omitted (no token-report article exists). Soul files empty → neutral tone.
+- `memory/logs/2026-10-16.md` — appended the 20:00 heartbeat log entry.
 
-**Follow-up needed (operator):** ISS-003 is the priority unblocker — inspect the GitHub Actions scheduled-workflow run history to confirm whether cron is firing (GitHub throttles/disables schedules on low-activity repos). ISS-001 and ISS-002 remain open.
+**Follow-up needed:** ISS-003 (scheduler 07:00 slot still dead → autoresearch never dispatched since 10-12) remains open; ISS-001 and ISS-002 (missing `XAI_API_KEY`) still unresolved. Status page commits to main via the workflow's auto-commit step.
+
+`STATUS_PAGE=WATCH`
