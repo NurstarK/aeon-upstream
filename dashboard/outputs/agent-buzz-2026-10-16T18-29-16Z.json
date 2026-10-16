@@ -1,0 +1,239 @@
+{
+  "root": "card-root",
+  "state": {},
+  "elements": {
+    "card-root": {
+      "type": "Card",
+      "props": {
+        "title": "Agent Buzz",
+        "description": "2026-10-16 — All sources failed"
+      },
+      "children": [
+        "alert-error",
+        "sep-1",
+        "stack-issue",
+        "sep-2",
+        "stack-sources",
+        "sep-3",
+        "stack-impact",
+        "sep-4",
+        "stack-context",
+        "sep-5",
+        "stack-tracking"
+      ]
+    },
+    "alert-error": {
+      "type": "Alert",
+      "props": {
+        "type": "error",
+        "title": "Skill Execution Failed",
+        "message": "All sources failed. XAI_API_KEY unset"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {}
+    },
+    "stack-issue": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "h-issue",
+        "t-auth"
+      ]
+    },
+    "h-issue": {
+      "type": "Heading",
+      "props": {
+        "text": "Root Cause",
+        "level": "h3"
+      }
+    },
+    "t-auth": {
+      "type": "Text",
+      "props": {
+        "text": "XAI_API_KEY unset → curl + WebFetch to X.AI x_search have no auth"
+      }
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {}
+    },
+    "stack-sources": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "h-sources",
+        "t-websearch",
+        "t-stale",
+        "t-no-live"
+      ]
+    },
+    "h-sources": {
+      "type": "Heading",
+      "props": {
+        "text": "Source Failures",
+        "level": "h3"
+      }
+    },
+    "t-websearch": {
+      "type": "Text",
+      "props": {
+        "text": "WebSearch fallback returned only stale/undated articles"
+      }
+    },
+    "t-stale": {
+      "type": "Text",
+      "props": {
+        "text": "Newest tweets are months old — no live tweets with engagement counts available"
+      }
+    },
+    "t-no-live": {
+      "type": "Text",
+      "props": {
+        "text": "Data outside 30h freshness window requirement"
+      }
+    },
+    "sep-3": {
+      "type": "Separator",
+      "props": {}
+    },
+    "stack-impact": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "h-impact",
+        "t-cant-curate",
+        "t-status"
+      ]
+    },
+    "h-impact": {
+      "type": "Heading",
+      "props": {
+        "text": "Impact",
+        "level": "h3"
+      }
+    },
+    "t-cant-curate": {
+      "type": "Text",
+      "props": {
+        "text": "Can't curate X or run signal scoring without fabricating metadata"
+      }
+    },
+    "t-status": {
+      "type": "Badge",
+      "props": {
+        "text": "This is ERROR, not a quiet day",
+        "variant": "destructive"
+      }
+    },
+    "sep-4": {
+      "type": "Separator",
+      "props": {}
+    },
+    "stack-context": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "h-context",
+        "t-scene",
+        "grid-topics"
+      ]
+    },
+    "h-context": {
+      "type": "Heading",
+      "props": {
+        "text": "Active Scene",
+        "level": "h3"
+      }
+    },
+    "t-scene": {
+      "type": "Text",
+      "props": {
+        "text": "Scene is active with related topics:"
+      }
+    },
+    "grid-topics": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "b-aembit",
+        "b-cmu",
+        "b-cert"
+      ]
+    },
+    "b-aembit": {
+      "type": "Badge",
+      "props": {
+        "text": "Aembit MCP tool access control",
+        "variant": "outline"
+      }
+    },
+    "b-cmu": {
+      "type": "Badge",
+      "props": {
+        "text": "CMU/Unanimous AI agent-team study",
+        "variant": "outline"
+      }
+    },
+    "b-cert": {
+      "type": "Badge",
+      "props": {
+        "text": "CERT-In sandbox-escape advisory",
+        "variant": "outline"
+      }
+    },
+    "sep-5": {
+      "type": "Separator",
+      "props": {}
+    },
+    "stack-tracking": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "h-fix",
+        "t-fix",
+        "t-issue"
+      ]
+    },
+    "h-fix": {
+      "type": "Heading",
+      "props": {
+        "text": "Resolution",
+        "level": "h3"
+      }
+    },
+    "t-fix": {
+      "type": "Text",
+      "props": {
+        "text": "Set XAI_API_KEY",
+        "variant": "lead"
+      }
+    },
+    "t-issue": {
+      "type": "Text",
+      "props": {
+        "text": "Tracked as ISS-002. 5th consecutive block on: 10-09, 10-10, 10-11, 10-13, 10-16",
+        "variant": "caption"
+      }
+    }
+  }
+}
