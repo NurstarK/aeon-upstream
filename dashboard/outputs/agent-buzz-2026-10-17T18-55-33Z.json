@@ -1,0 +1,147 @@
+{
+  "root": "main-card",
+  "state": {},
+  "elements": {
+    "main-card": {
+      "type": "Card",
+      "props": {
+        "title": "Agent Buzz — 2026-10-17",
+        "description": "Data access failure across all sources"
+      },
+      "children": [
+        "alert-status",
+        "sep-1",
+        "failures-stack",
+        "sep-2",
+        "context-stack",
+        "sep-3",
+        "fix-stack"
+      ]
+    },
+    "alert-status": {
+      "type": "Alert",
+      "props": {
+        "type": "error",
+        "title": "All usable sources failed",
+        "message": "6th consecutive block"
+      },
+      "children": []
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "failures-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "failures-heading",
+        "failure-1",
+        "failure-2"
+      ]
+    },
+    "failures-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Root Causes",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "failure-1": {
+      "type": "Text",
+      "props": {
+        "text": "XAI_API_KEY unset → X.AI x_search unavailable"
+      },
+      "children": []
+    },
+    "failure-2": {
+      "type": "Text",
+      "props": {
+        "text": "WebSearch fallback returns no fresh tweets with engagement metadata, so signal scoring can't run"
+      },
+      "children": []
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "context-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "context-heading",
+        "context-text"
+      ]
+    },
+    "context-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Market Context",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "context-text": {
+      "type": "Text",
+      "props": {
+        "text": "The AI-agent scene is active today (OpenGCUA, NVIDIA Nemotron, Copilot Studio launches) — this is a data-access gap, not a quiet day."
+      },
+      "children": []
+    },
+    "sep-3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "fix-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "fix-heading",
+        "fix-text",
+        "tracking-badge"
+      ]
+    },
+    "fix-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Resolution",
+        "level": "h3"
+      },
+      "children": []
+    },
+    "fix-text": {
+      "type": "Text",
+      "props": {
+        "text": "Set XAI_API_KEY secret"
+      },
+      "children": []
+    },
+    "tracking-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "Tracked in ISS-002",
+        "variant": "outline"
+      },
+      "children": []
+    }
+  }
+}
