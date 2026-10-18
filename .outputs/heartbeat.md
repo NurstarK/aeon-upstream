@@ -1,24 +1,23 @@
-Heartbeat run complete.
+Heartbeat complete.
 
 ## Summary
 
-Ran the full heartbeat check for the 20:00 UTC slot (fired ~21:06, ~1h late). **Overall verdict: 🟡 WATCH** — unchanged from the prior run.
+Ran the `heartbeat` skill (10-18 08:00 slot, fired ~09:43 UTC). **Verdict: 🟡 WATCH** — no new notification sent (dedup).
 
 **Checks:**
-- **P0 (failed/stuck):** Clear. No failed or stuck skills, no `consecutive_failures ≥ 3`, all `success_rate = 1.0`. Heartbeat self-check **OK** (last_success ~23.5h ago, well under 36h).
-- **Scheduler stall (ISS-003) persists:** Today's 10-17 08:00 and 14:00 heartbeat slots never fired, and the **07:00 autoresearch slot has been dead since 2026-10-12 (~5 days)** — the single most persistent gap. Evening slots (agent-buzz 17:30) recover; morning/midday slots keep dropping.
-- **P3 stale:** autoresearch stale (~134h, root cause = ISS-001 + ISS-003). agent-buzz exit-success/fresh but content-level blocked (ISS-002, sixth consecutive block logged today).
-- **P1:** 0 open PRs, 0 urgent issues.
-- **P2:** No urgent memory follow-ups.
-- **Open issues:** ISS-001, ISS-002, ISS-003 (all high).
+- **P0 — clear.** No failed/stuck skills, no `consecutive_failures ≥ 3`, all `success_rate` = 1.0. Heartbeat self-check OK (last success ~12.6h ago, well under 36h).
+- **P1 — clean.** 0 open PRs, 0 urgent issues.
+- **P2 — nothing urgent** in MEMORY.md.
+- **P3 — scheduler stall persists (ISS-003):** today's 08:00 heartbeat slot fired ~1h43m late; **autoresearch's 07:00 slot has been dead since 2026-10-12** (6 consecutive days undispatched), so autoresearch is stale (~146h vs. its daily schedule). agent-buzz is fresh at the scheduler level (content still blocked by ISS-002).
+- **Open issues:** ISS-001, ISS-002, ISS-003 — all open/high.
+- **Token pulse:** omitted (no `articles/token-report-*.md`).
 
-**Notification:** Skipped per dedup rule — all findings appear in last-48h logs and were last notified 10-14; status unchanged, no worsening.
+**Notification:** skipped — scheduler-stall / autoresearch-stale already appear in the last-48h logs and status is unchanged (no worsening). Per the dedup rule, no fresh `./notify`.
 
 **Files modified:**
-- `docs/status.md` — regenerated (🟡 WATCH, updated 2026-10-17 21:06 UTC, 3 open issues, Token pulse section omitted since no token-report article exists).
-- `memory/issues/ISS-003.md` — added 2026-10-17 evidence line (continued intermittent dispatch, 07:00 slot dead ~5 days).
-- `memory/logs/2026-10-17.md` — appended heartbeat run log.
+- `docs/status.md` — regenerated (Overall 🟡 WATCH, 3 open issues, next run heartbeat 14:00 UTC).
+- `memory/logs/2026-10-18.md` — created with this run's findings.
 
-**Follow-up needed:** ISS-003 remains the priority — the GitHub Actions scheduler is not reliably firing morning/midday cron slots (esp. 07:00). Needs inspection of the Actions workflow run history to confirm throttling/disablement, plus ISS-001 (autoresearch var misconfig) and ISS-002 (`XAI_API_KEY` unset) still open.
+**Follow-up needed (operator):** the recurring morning-slot scheduler gap (ISS-003, esp. the dead 07:00 autoresearch slot), plus the standing ISS-001 (autoresearch `var=Agents` misconfig) and ISS-002 (`XAI_API_KEY` unset) blocks.
 
-Log line: `STATUS_PAGE=WATCH — wrote docs/status.md`
+`HEARTBEAT_OK` was **not** logged — overall status is WATCH. Verdict: `STATUS_PAGE=WATCH — wrote docs/status.md`.
