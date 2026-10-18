@@ -1,23 +1,22 @@
-Heartbeat complete.
+Heartbeat complete. `HEARTBEAT_OK` on P0 (no failed/stuck skills) · `STATUS_PAGE=WATCH`.
 
 ## Summary
 
-Ran the `heartbeat` skill (10-18 08:00 slot, fired ~09:43 UTC). **Verdict: 🟡 WATCH** — no new notification sent (dedup).
+Ran the 20:00 UTC heartbeat (fired late, ~21:25 UTC — consistent with ISS-003 scheduler stall).
 
 **Checks:**
-- **P0 — clear.** No failed/stuck skills, no `consecutive_failures ≥ 3`, all `success_rate` = 1.0. Heartbeat self-check OK (last success ~12.6h ago, well under 36h).
+- **P0 — clear.** All skills `success`, `success_rate=1.0`, no `consecutive_failures≥3`, none stuck. Heartbeat self-check OK (last_success ~11.7h ago).
 - **P1 — clean.** 0 open PRs, 0 urgent issues.
-- **P2 — nothing urgent** in MEMORY.md.
-- **P3 — scheduler stall persists (ISS-003):** today's 08:00 heartbeat slot fired ~1h43m late; **autoresearch's 07:00 slot has been dead since 2026-10-12** (6 consecutive days undispatched), so autoresearch is stale (~146h vs. its daily schedule). agent-buzz is fresh at the scheduler level (content still blocked by ISS-002).
-- **Open issues:** ISS-001, ISS-002, ISS-003 — all open/high.
-- **Token pulse:** omitted (no `articles/token-report-*.md`).
+- **P2 — none urgent.** MEMORY "Next Priorities" unchanged.
+- **P3 — autoresearch stale.** last_success 2026-10-12 (~158h, ≫48h). Root cause = ISS-003 (07:00 slot never dispatched for 6 straight days) + ISS-001 (var misconfig). agent-buzz fresh (~26.5h).
+- **Token pulse:** no `articles/token-report-*.md` → section omitted.
 
-**Notification:** skipped — scheduler-stall / autoresearch-stale already appear in the last-48h logs and status is unchanged (no worsening). Per the dedup rule, no fresh `./notify`.
+**Overall: 🟡 WATCH** (P3 stale + 3 open high-severity issues: ISS-001/002/003).
+
+**Notification: skipped** — all findings (scheduler stall, autoresearch staleness) already in last-48h logs and tracked in ISS-003; status unchanged, no worsening. Per dedup rule, no fresh `./notify`.
 
 **Files modified:**
-- `docs/status.md` — regenerated (Overall 🟡 WATCH, 3 open issues, next run heartbeat 14:00 UTC).
-- `memory/logs/2026-10-18.md` — created with this run's findings.
+- `docs/status.md` — regenerated (Updated 2026-10-18 21:25 UTC, Overall WATCH, 3 open issues, next run = autoresearch 07:00 UTC).
+- `memory/logs/2026-10-18.md` — appended 20:00-run entry.
 
-**Follow-up needed (operator):** the recurring morning-slot scheduler gap (ISS-003, esp. the dead 07:00 autoresearch slot), plus the standing ISS-001 (autoresearch `var=Agents` misconfig) and ISS-002 (`XAI_API_KEY` unset) blocks.
-
-`HEARTBEAT_OK` was **not** logged — overall status is WATCH. Verdict: `STATUS_PAGE=WATCH — wrote docs/status.md`.
+**Follow-up needed:** ISS-003 (intermittent scheduler / dropped 07:00 slot) remains the root blocker — it keeps autoresearch stale and delays every slot. Still awaiting operator action on ISS-001 (var=Agents) and ISS-002 (XAI_API_KEY).
