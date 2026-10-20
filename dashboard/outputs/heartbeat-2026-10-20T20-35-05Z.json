@@ -1,0 +1,183 @@
+{
+  "root": "card_main",
+  "state": {},
+  "elements": {
+    "card_main": {
+      "type": "Card",
+      "props": {
+        "title": "Heartbeat — System Health Status"
+      },
+      "children": [
+        "alert_degraded",
+        "sep1",
+        "issue_badge",
+        "sep2",
+        "metrics_stack",
+        "sep3",
+        "skills_heading",
+        "skills_table",
+        "sep4",
+        "root_cause_stack",
+        "sep5",
+        "status_badges"
+      ]
+    },
+    "alert_degraded": {
+      "type": "Alert",
+      "props": {
+        "type": "error",
+        "title": "🔴 DEGRADED",
+        "message": "Scheduler stall escalated. Heartbeat hasn't run since 2026-10-18 21:26 UTC (~47h), exceeding the 36h self-check threshold. All slots on 2026-10-19 and the 08:00/14:00 slots on 2026-10-20 were missed."
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {}
+    },
+    "issue_badge": {
+      "type": "Badge",
+      "props": {
+        "text": "ISS-003",
+        "variant": "outline"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {}
+    },
+    "metrics_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "lg"
+      },
+      "children": [
+        "stat_last_run",
+        "stat_threshold",
+        "stat_downtime"
+      ]
+    },
+    "stat_last_run": {
+      "type": "Stat",
+      "props": {
+        "label": "Last Run",
+        "value": "2026-10-18 21:26 UTC"
+      }
+    },
+    "stat_threshold": {
+      "type": "Stat",
+      "props": {
+        "label": "Self-Check Threshold",
+        "value": "36h"
+      }
+    },
+    "stat_downtime": {
+      "type": "Stat",
+      "props": {
+        "label": "Time Since Last Run",
+        "value": "~47h",
+        "trend": "down"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {}
+    },
+    "skills_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Enabled Skills Status (3 Total)",
+        "level": "h3"
+      }
+    },
+    "skills_table": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "Skill",
+          "Last Success",
+          "Age",
+          "Status"
+        ],
+        "rows": [
+          [
+            "autoresearch",
+            "2026-10-12",
+            "~8 days",
+            "Stale"
+          ],
+          [
+            "agent-buzz",
+            "2026-10-17",
+            "~73h",
+            "Stale"
+          ],
+          [
+            "heartbeat",
+            "2026-10-18",
+            "~47h",
+            "Stale"
+          ]
+        ]
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {}
+    },
+    "root_cause_stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "root_cause_heading",
+        "root_cause_text"
+      ]
+    },
+    "root_cause_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Root Cause",
+        "level": "h4"
+      }
+    },
+    "root_cause_text": {
+      "type": "Text",
+      "props": {
+        "text": "No failures or errors detected. Pure dispatch starvation — scheduler is not dispatching jobs.",
+        "variant": "body"
+      }
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {}
+    },
+    "status_badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "badge_p1_clean",
+        "badge_status_page"
+      ]
+    },
+    "badge_p1_clean": {
+      "type": "Badge",
+      "props": {
+        "text": "P1 Clean: 0 PRs, 0 urgent issues",
+        "variant": "secondary"
+      }
+    },
+    "badge_status_page": {
+      "type": "Badge",
+      "props": {
+        "text": "Status Page → DEGRADED",
+        "variant": "destructive"
+      }
+    }
+  }
+}
