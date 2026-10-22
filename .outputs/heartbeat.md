@@ -1,21 +1,25 @@
+Heartbeat complete.
+
 ## Summary
 
-Ran the **heartbeat** skill for the 10-21 20:00 slot (fired ~20:45 UTC). Soul files are empty templates → neutral tone.
+Ran the full heartbeat check for the **2026-10-22 20:00 UTC** cycle.
 
-**Verdict: 🟡 WATCH** (de-escalated from 🔴 DEGRADED on 10-20)
+**Verdict: 🟡 WATCH** (no notification sent — dedup skip)
 
-- **P0 — self-check RECOVERED:** heartbeat `last_success` is 2026-10-20T20:35:35Z (~24.2h ago, under the 36h threshold). The 10-20 20:00 slot succeeded, so heartbeat's own cadence is back in tolerance — this clears the sole P0 flag that forced DEGRADED. No failed/stuck skills, no `consecutive_failures≥3`, all `success_rate=1.0`.
-- **ISS-003 still active:** 10-21 08:00 & 14:00 heartbeat slots both missed; autoresearch 07:00 dead since 10-12; agent-buzz not dispatched since 10-17. Pure dispatch starvation, not skill errors.
-- **P3 stale:** autoresearch (~229h) and agent-buzz (~98h) both past 2x their daily interval.
-- **P1 clean:** 0 open PRs, 0 urgent issues.
-- **Open issues:** ISS-001/002/003 (all high, config/missing-secret/config).
-- **Token pulse:** no `articles/token-report-*.md` → section omitted.
-- **Notification SKIPPED:** the tier change is a recovery/de-escalation, not an escalation; all WATCH-level items appear in the last-48h logs and the 10-20 DEGRADED notice already fired. No fresh `./notify` to avoid noise.
+**P0 — clear:** No failed, stuck, chronically-failing, or degraded skills. All `success_rate=1.0`. Heartbeat self-check passed (last success ~23h ago, under the 36h threshold).
+
+**Notable change (positive):** agent-buzz dispatched + succeeded today at 17:32 UTC — its first dispatch since 10-17, signaling the scheduler (ISS-003) is partially recovering. However, the 08:00/14:00 heartbeat slots were still missed and autoresearch has been dead since 2026-10-12, so ISS-003 persists.
+
+**P3 stale:** autoresearch last succeeded ~246h ago (>>48h), compounded by the var=Agents misconfig (ISS-001).
+
+**P1/P2 clean:** 0 open PRs, 0 urgent issues, no urgent memory follow-ups.
+
+**Open issues:** ISS-001, ISS-002, ISS-003 (all open, high).
+
+**Notification:** Skipped — no new/worsening P0 condition; every WATCH-level item already appears in the last-48h logs, and the only delta this cycle is a recovery, not an escalation.
 
 **Files modified:**
-- `docs/status.md` — regenerated (Overall 🟡 WATCH, Updated 2026-10-21 20:45 UTC, 3 open issues, next run autoresearch 07:00 UTC)
-- `memory/logs/2026-10-21.md` — created with this cycle's findings
+- `docs/status.md` — regenerated (🟡 WATCH, updated 2026-10-22 20:46 UTC, 3 open issues, skill table re-sorted; Token pulse omitted — no token reports exist)
+- `memory/logs/2026-10-22.md` — appended heartbeat findings
 
-**Follow-up:** ISS-003 (intermittent scheduler dispatch) remains the root cause blocking autoresearch/agent-buzz cadence; ISS-001 (var=Agents misconfig) and ISS-002 (XAI_API_KEY unset) remain open. All are operator-side config/secret fixes outside heartbeat's scope.
-
-`STATUS_PAGE=WATCH — wrote docs/status.md`
+**Follow-up (operator action still needed):** set `XAI_API_KEY` (ISS-002), fix autoresearch `var=Agents` → valid skill slug (ISS-001), and investigate scheduler dispatch starvation (ISS-003, now easing).
