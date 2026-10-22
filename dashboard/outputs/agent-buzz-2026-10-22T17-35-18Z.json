@@ -1,0 +1,149 @@
+{
+  "root": "card-main",
+  "state": {},
+  "elements": {
+    "card-main": {
+      "type": "Card",
+      "props": {
+        "title": "Agent Buzz",
+        "description": "2026-10-22 (var=AI)"
+      },
+      "children": [
+        "alert-main",
+        "sep-1",
+        "details-section",
+        "sep-2",
+        "fallback-section",
+        "sep-3",
+        "fix-section"
+      ]
+    },
+    "alert-main": {
+      "type": "Alert",
+      "props": {
+        "type": "error",
+        "title": "All tweet sources failed",
+        "message": "XAI_API_KEY unavailable in sandbox (7th consecutive block) — Grok x_search cannot run. No tweets with engagement counts or fresh status links available."
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {}
+    },
+    "details-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "details-heading",
+        "details-text",
+        "scene-status"
+      ]
+    },
+    "details-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Attempted recovery",
+        "level": "h3"
+      }
+    },
+    "details-text": {
+      "type": "Text",
+      "props": {
+        "text": "WebSearch fallback was attempted but returned only press releases."
+      }
+    },
+    "scene-status": {
+      "type": "Badge",
+      "props": {
+        "text": "Scene is active, not quiet",
+        "variant": "outline"
+      }
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {}
+    },
+    "fallback-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "fallback-heading",
+        "fallback-list"
+      ]
+    },
+    "fallback-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Press releases found",
+        "level": "h3"
+      }
+    },
+    "fallback-list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-1",
+        "badge-2",
+        "badge-3"
+      ]
+    },
+    "badge-1": {
+      "type": "Badge",
+      "props": {
+        "text": "Walmart MCP Agent Gateway",
+        "variant": "secondary"
+      }
+    },
+    "badge-2": {
+      "type": "Badge",
+      "props": {
+        "text": "Agentic AI Foundation's Agent Skills/OpenEnv/OpenSandbox",
+        "variant": "secondary"
+      }
+    },
+    "badge-3": {
+      "type": "Badge",
+      "props": {
+        "text": "Quantum Metric MCP",
+        "variant": "secondary"
+      }
+    },
+    "sep-3": {
+      "type": "Separator",
+      "props": {}
+    },
+    "fix-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "fix-heading",
+        "fix-text"
+      ]
+    },
+    "fix-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Required action",
+        "level": "h3"
+      }
+    },
+    "fix-text": {
+      "type": "Text",
+      "props": {
+        "text": "Set XAI_API_KEY secret (tracked in ISS-002)"
+      }
+    }
+  }
+}
