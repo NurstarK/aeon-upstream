@@ -1,0 +1,92 @@
+{
+  "root": "card_root",
+  "state": {},
+  "elements": {
+    "card_root": {
+      "type": "Card",
+      "props": {
+        "title": "Autoresearch"
+      },
+      "children": [
+        "stack_main"
+      ]
+    },
+    "stack_main": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "alert_error",
+        "sep1",
+        "matches_section"
+      ]
+    },
+    "alert_error": {
+      "type": "Alert",
+      "props": {
+        "type": "error",
+        "title": "Skill not found",
+        "message": "Skill 'Agents' not found. No skill named 'Agents' exists in skills/."
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "matches_section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "text_matches",
+        "stack_badges",
+        "text_action"
+      ]
+    },
+    "text_matches": {
+      "type": "Text",
+      "props": {
+        "text": "Closest matches:",
+        "variant": "lead"
+      }
+    },
+    "stack_badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge_buzz",
+        "badge_displacement"
+      ]
+    },
+    "badge_buzz": {
+      "type": "Badge",
+      "props": {
+        "text": "agent-buzz",
+        "variant": "outline"
+      }
+    },
+    "badge_displacement": {
+      "type": "Badge",
+      "props": {
+        "text": "agent-displacement",
+        "variant": "outline"
+      }
+    },
+    "text_action": {
+      "type": "Text",
+      "props": {
+        "text": "Re-run with var set to an exact existing skill name.",
+        "variant": "caption"
+      }
+    }
+  }
+}
