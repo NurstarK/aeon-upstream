@@ -1,25 +1,22 @@
-Heartbeat complete.
+Heartbeat complete. All priority checks ran; status page regenerated.
 
 ## Summary
 
-Ran the full heartbeat check for the **2026-10-22 20:00 UTC** cycle.
+Ran the `heartbeat` skill (20:00 UTC cycle, fired ~20:33 UTC).
 
-**Verdict: 🟡 WATCH** (no notification sent — dedup skip)
+**Verdict: 🟡 WATCH** · `STATUS_PAGE=WATCH`
 
-**P0 — clear:** No failed, stuck, chronically-failing, or degraded skills. All `success_rate=1.0`. Heartbeat self-check passed (last success ~23h ago, under the 36h threshold).
+**Checks:**
+- **P0 — clear.** No failed/stuck skills in `cron-state.json`; all three enabled skills (autoresearch, agent-buzz, heartbeat) at `success_rate=1.0`, `consecutive_failures=0`. Heartbeat self-check: last success ~23.8h ago, under the 36h threshold.
+- **P1 — clean.** `gh pr list` → 0 open PRs; `gh issue list --label urgent` → 0 urgent issues.
+- **P2 — nothing urgent** in MEMORY.md.
+- **P3 — no skill past 2× its interval.** Notable: **autoresearch recovered** — it fired at 07:00 today (first 07:00 fire since 10-12), though the skill still aborts at content level because `var=Agents` points to a non-existent skill (ISS-001). ISS-003 persists: today's heartbeat 08:00/14:00 and agent-buzz 17:30 slots were missed — scheduler still intermittent.
+- **Open issues:** ISS-001, ISS-002, ISS-003 (all high) → drives the WATCH verdict.
 
-**Notable change (positive):** agent-buzz dispatched + succeeded today at 17:32 UTC — its first dispatch since 10-17, signaling the scheduler (ISS-003) is partially recovering. However, the 08:00/14:00 heartbeat slots were still missed and autoresearch has been dead since 2026-10-12, so ISS-003 persists.
-
-**P3 stale:** autoresearch last succeeded ~246h ago (>>48h), compounded by the var=Agents misconfig (ISS-001).
-
-**P1/P2 clean:** 0 open PRs, 0 urgent issues, no urgent memory follow-ups.
-
-**Open issues:** ISS-001, ISS-002, ISS-003 (all open, high).
-
-**Notification:** Skipped — no new/worsening P0 condition; every WATCH-level item already appears in the last-48h logs, and the only delta this cycle is a recovery, not an escalation.
+**Notification:** SKIPPED per dedup — no new/worsening P0 condition; the only delta is a recovery (autoresearch dispatching again), not an escalation, and all WATCH items already appear in the last 48h of logs.
 
 **Files modified:**
-- `docs/status.md` — regenerated (🟡 WATCH, updated 2026-10-22 20:46 UTC, 3 open issues, skill table re-sorted; Token pulse omitted — no token reports exist)
-- `memory/logs/2026-10-22.md` — appended heartbeat findings
+- `docs/status.md` — regenerated public status page (Overall 🟡 WATCH, updated 2026-10-23 20:33 UTC, 3 open issues, next run heartbeat 08:00 UTC). Token pulse section omitted (no `articles/token-report-*.md`).
+- `memory/logs/2026-10-23.md` — appended heartbeat run entry.
 
-**Follow-up (operator action still needed):** set `XAI_API_KEY` (ISS-002), fix autoresearch `var=Agents` → valid skill slug (ISS-001), and investigate scheduler dispatch starvation (ISS-003, now easing).
+**Follow-up needed (operator):** ISS-001 (set `autoresearch` var to a real skill name), ISS-002 (set `XAI_API_KEY`), ISS-003 (scheduler reliability). The file lands on `main` via the workflow's auto-commit step.
