@@ -1,0 +1,184 @@
+{
+  "root": "card-main",
+  "state": {},
+  "elements": {
+    "card-main": {
+      "type": "Card",
+      "props": {
+        "title": "Agent Buzz",
+        "description": "2026-10-24"
+      },
+      "children": [
+        "alert-main",
+        "sep-1",
+        "section-failure",
+        "sep-2",
+        "section-sources",
+        "sep-3",
+        "section-resolution"
+      ]
+    },
+    "alert-main": {
+      "type": "Alert",
+      "props": {
+        "type": "error",
+        "title": "All tweet sources failed",
+        "message": "XAI_API_KEY unavailable"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {}
+    },
+    "section-failure": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading-failure",
+        "text-harness"
+      ]
+    },
+    "heading-failure": {
+      "type": "Heading",
+      "props": {
+        "text": "Why it failed",
+        "level": "h3"
+      }
+    },
+    "text-harness": {
+      "type": "Text",
+      "props": {
+        "text": "The harness refuses any command referencing the secret, so Grok x_search (tiers 1-2) can't authenticate."
+      }
+    },
+    "sep-2": {
+      "type": "Separator",
+      "props": {}
+    },
+    "section-sources": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading-sources",
+        "text-websearch",
+        "sources-list"
+      ]
+    },
+    "heading-sources": {
+      "type": "Heading",
+      "props": {
+        "text": "Fallback attempt (WebSearch, tier 3)",
+        "level": "h3"
+      }
+    },
+    "text-websearch": {
+      "type": "Text",
+      "props": {
+        "text": "Returned only MCP press releases. No tweets with engagement counts or fresh status links."
+      }
+    },
+    "sources-list": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-functionize",
+        "badge-bloomberg",
+        "badge-financial",
+        "badge-quantum"
+      ]
+    },
+    "badge-functionize": {
+      "type": "Badge",
+      "props": {
+        "text": "Functionize",
+        "variant": "outline"
+      }
+    },
+    "badge-bloomberg": {
+      "type": "Badge",
+      "props": {
+        "text": "Bloomberg Enterprise MCP",
+        "variant": "outline"
+      }
+    },
+    "badge-financial": {
+      "type": "Badge",
+      "props": {
+        "text": "Financial Cents",
+        "variant": "outline"
+      }
+    },
+    "badge-quantum": {
+      "type": "Badge",
+      "props": {
+        "text": "Quantum Metric",
+        "variant": "outline"
+      }
+    },
+    "sep-3": {
+      "type": "Separator",
+      "props": {}
+    },
+    "section-resolution": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "stack-consecutive",
+        "alert-fix",
+        "text-note"
+      ]
+    },
+    "stack-consecutive": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "text-consecutive",
+        "badge-issue"
+      ]
+    },
+    "text-consecutive": {
+      "type": "Text",
+      "props": {
+        "text": "8th consecutive block",
+        "variant": "muted"
+      }
+    },
+    "badge-issue": {
+      "type": "Badge",
+      "props": {
+        "text": "ISS-002",
+        "variant": "secondary"
+      }
+    },
+    "alert-fix": {
+      "type": "Alert",
+      "props": {
+        "type": "warning",
+        "title": "Fix required",
+        "message": "Set XAI_API_KEY secret"
+      }
+    },
+    "text-note": {
+      "type": "Text",
+      "props": {
+        "text": "Not fabricating tweet metadata.",
+        "variant": "caption"
+      }
+    }
+  }
+}
