@@ -1,8 +1,13 @@
 ---
 name: narrative-convergence
-description: Daily cross-skill signal detector — finds entities or themes surfaced independently by 3+ different skill categories in the last 48h and surfaces them as high-confidence write opportunities
-var: ""
-tags: [content, meta, intelligence]
+description: Cross-skill signal detector - finds entities or themes surfaced independently by 3+ different skill categories within 48h and surfaces them as high-confidence write opportunities
+metadata:
+  category: core
+  var: ""
+  tags:
+    - content
+    - meta
+    - intelligence
 ---
 > **${var}** — Optional entity or theme filter (e.g. "Anthropic", "coordination markets"). If empty, scans all skill output categories.
 
@@ -14,7 +19,7 @@ If `soul/SOUL.md` and `soul/STYLE.md` exist and are populated, read them and mat
 
 ## Why this skill exists
 
-`topic-momentum` surfaces content gaps by scanning the content-discovery pipeline against article history. It works well for pre-tagged narrative categories.
+`narrative-tracker` follows narratives inside one feed (crypto X) and tracks their phase. It works well when the narrative is already named.
 
 This skill does something different: it detects **emergent cross-skill convergence** — when independent operational skills (security scanners, market trackers, sector pulses, etc.) all surface the same entity, company, protocol, or theme within 48h, without any prior coordination. That kind of convergence is a higher-signal indicator than any single source — it often precedes a breakout narrative. Example: a security skill flags a company's automated-vulnerability work, a social digest catches that same company announcing a major deal, and a market tracker notes a related fraud-prevention win — three independent skills, one entity, in 48h. That bleedthrough is the signal. This skill catches it automatically.
 
@@ -26,27 +31,27 @@ The signal-category map is **operator-editable** and lives in `memory/topics/sig
 # Signal Categories
 
 ## Housekeeping (excluded — no external signals)
-config-validator, janitor, run-frequency-guard, batch-health, heartbeat, memory-flush,
-memory-structural-dedupe, skill-evals, skill-health, skill-repair, self-review, reflect,
-spend-monitor, cost-report, fleet-scorecard, fleet-control, repo-scanner, narrative-convergence
+heartbeat, memory-flush, aeon-doctor, aeon-update, auto-merge,
+skill-health, skill-repair, self-improve, operator-scorecard,
+shiplog, fleet-control, fork-fleet, narrative-convergence
 
 ## Signal categories (skill → category)
 | Category | Skills |
 |----------|--------|
-| market | market-context-refresh, token-pick, token-movers, rwa-pulse, defi-monitor |
-| social | tweet-roundup, list-digest, narrative-tracker, remix-tweets, refresh-x |
-| ecosystem | github-issues, github-trending, project-lens, builder-map, external-feature, milestone-tracker |
-| sector | mcp-pulse, compute-pulse, x402-monitor, agent-displacement, pm-pulse |
-| security | vuln-scanner, vuln-tracker, disclosure-tracker, pvr-watchlist, pvr-triage-monitor |
-| research | paper-pick, article, idea-validator, idea-pipeline |
-| opportunity | startup-idea, deal-flow, launch-radar |
+| market | token-pick, token-movers, defi-overview, monitor-polymarket, pm-manipulation, unlock-monitor, picks-tracker |
+| social | fetch-tweets, narrative-tracker, mention-radar, write-tweet, last30 |
+| ecosystem | github-trending, github-monitor, bd-radar, competitor-monitor |
+| onchain | onchain-monitor, investigation-report, tx-explain, base-mcp |
+| security | vuln-scanner, vuln-tracker, sc-audit, inbox-triage |
+| research | article, digest, you-web-search, glim-mcp, idea-pipeline, idea-forge |
+| opportunity | hunter-22, feedback-builder, taskmarket-delegate |
 ```
 
 ## Steps
 
 ### 1. Identify which outputs to read
 
-List `.outputs/*.md` with the Glob tool. Exclude the **Housekeeping** skills from `signal-categories.md` — they carry no external signal.
+List `output/.chains/*.md` with the Glob tool. Exclude the **Housekeeping** skills from `signal-categories.md` — they carry no external signal.
 
 Map each remaining output file to its category using the table in `signal-categories.md`. Any signal skill not listed in the table goes into an `other` category (so newly-added skills still count toward convergence, just without a named lane).
 
@@ -63,13 +68,13 @@ For each signal skill output file that exists:
 Build an entity/theme map:
 ```
 {
-  "<Entity>": [{ skill: "vuln-scanner", category: "security" }, { skill: "tweet-roundup", category: "social" }],
-  "<theme>": [{ skill: "pm-pulse", category: "sector" }, ...],
+  "<Entity>": [{ skill: "vuln-scanner", category: "security" }, { skill: "fetch-tweets", category: "social" }],
+  "<theme>": [{ skill: "monitor-polymarket", category: "market" }, ...],
   ...
 }
 ```
 
-Also read memory logs from the last 2 days (Glob `memory/logs/*.md`, take the 2 most recent). From each log, extract entities/themes mentioned in specific skill run entries and add them to the map with their source skill. Every skill appends a log entry, so the signal map can be reconstructed from logs alone when `.outputs/` is sparse.
+Also read memory logs from the last 2 days (Glob `memory/logs/*.md`, take the 2 most recent). From each log, extract entities/themes mentioned in specific skill run entries and add them to the map with their source skill. Every skill appends a log entry, so the signal map can be reconstructed from logs alone when `output/.chains/` is sparse.
 
 ### 3. Score convergence signals
 
@@ -95,11 +100,11 @@ Rank descending by score. Take top 5 (or fewer if <5 clear signals).
 
 ### 4. Check against recent article coverage
 
-Glob `articles/*.md`, filter to the last 14 days. For each top signal:
+Glob `output/articles/*.md`, filter to the last 14 days. For each top signal:
 - If an article covered this entity/theme in the last 7 days: suppress it (−10, effectively dropping it).
 - If covered 8–14 days ago: note "recently covered" as a caveat.
 
-Update the final ranking after suppression. (If no `articles/` dir exists, skip this step.)
+Update the final ranking after suppression. (If no `output/articles/` dir exists, skip this step.)
 
 ### 5. Develop write opportunities
 
@@ -136,7 +141,7 @@ Write `memory/topics/convergence-signals.md` (overwrite if exists):
 
 ---
 *Generated by narrative-convergence on ${today}. Top signal has N source skills across N categories.*
-*Consumed by: article skill, topic-momentum.*
+*Consumed by: article skill.*
 ```
 
 If no signals meet the threshold: write a minimal file noting the scan ran clean.
@@ -168,9 +173,9 @@ Keep under 900 chars. Run:
 
 ### 8. Log to memory/logs/${today}.md
 
-Append:
+Append under a `### narrative-convergence` heading:
 ```markdown
-## Narrative Convergence
+### narrative-convergence
 - **Skills scanned:** N
 - **Entities/themes mapped:** N
 - **Signals above threshold:** N
@@ -183,8 +188,8 @@ If skipped: `NARRATIVE_CONVERGENCE_SKIP: <reason>`.
 
 ## Required Env Vars
 
-None. All reads from local `.outputs/`, `memory/`, and `articles/` dirs.
+None. All reads from local `output/.chains/`, `memory/`, and `output/articles/` dirs.
 
-## Sandbox Note
+## Network Note
 
-No network calls required. All data comes from local files written by other skills. If `.outputs/` is sparse (e.g. first morning run before skills have written), fall back to reading the last 3 memory logs directly — every skill appends a log entry, so the signal map can be reconstructed from logs alone. The only outbound call is `./notify`, which is already sandbox-safe.
+No network calls required. All data comes from local files written by other skills. If `output/.chains/` is sparse (e.g. first morning run before skills have written), fall back to reading the last 3 memory logs directly — every skill appends a log entry, so the signal map can be reconstructed from logs alone. The only outbound call is `./notify`, which works reliably.
