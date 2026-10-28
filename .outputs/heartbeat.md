@@ -2,22 +2,22 @@ Heartbeat complete.
 
 ## Summary
 
-Ran the full heartbeat check sweep at **2026-10-27 20:39 UTC** (the 20:00 slot, fired late).
+Ran the full heartbeat check for the 20:00 UTC slot (fired ~21:40 UTC on 2026-10-28).
 
-**Checks:**
-- **P0 (failed/stuck skills):** Clear. No failed or stuck skills, no `consecutive_failures≥3`, all `success_rate=1.0`. Heartbeat self-check is healthy — last success ~23.3h ago, well under the 36h threshold (recovered from the ~36h edge noted on 10-26).
-- **P1 (PRs/urgent issues):** Clean — 0 open PRs, 0 urgent issues.
-- **P2 (flagged memory):** No urgent follow-up.
-- **P3 (missing scheduled skills):** autoresearch (~109.6h stale) and agent-buzz (~74.9h stale) both past 2× their daily interval — continuations of **ISS-003** (intermittent scheduler dispatch). Today's 08:00/14:00 heartbeat slots were also missed.
+**Findings by priority:**
+- **P0 (failed/stuck skills):** 🟢 clear — all 3 tracked skills show `last_status: success`, `success_rate: 1.0`, zero consecutive failures. Heartbeat self-check ~25h since last success, under the 36h threshold.
+- **P1 (PRs/issues):** 🟢 clear — `gh pr list` and `gh issue list` both empty.
+- **P2 (flagged memory):** only template-default "Next Priorities"; nothing new.
+- **P3 (missing scheduled skills):** 🟡 autoresearch (~134h stale) and agent-buzz (~100h stale) both past 2× their daily interval — missed slots, continuation of **ISS-003** (intermittent scheduler dispatch).
 
-**Overall verdict: 🟡 WATCH** — driven by 3 open high-severity issues (ISS-001, ISS-002, ISS-003) and the ISS-003 scheduler staleness. No P0 → not DEGRADED.
+**Overall verdict:** 🟡 WATCH — driven by 3 open high-severity issues (ISS-001/002/003) and the two stale daily skills.
 
-**Notification:** SKIPPED per dedup — every WATCH driver is a known continuation of ISS-003, already logged in the last 48h (10-25/10-26). No new or worsening P0, no new issue filed.
+**Notification:** SKIPPED per dedup — every WATCH driver is a continuation of ISS-003, already covered in the 10-26/10-27 logs, with no new or worsening P0. No new issue filed (duplicate).
 
 **Files modified:**
-- `docs/status.md` — regenerated public status page (Overall WATCH, Updated 2026-10-27 20:39 UTC, 3 open issues, skill-health table refreshed with heartbeat's newer 2026-10-26 21:22 success; token-pulse section omitted — no token report exists).
-- `memory/logs/2026-10-27.md` — created with this cycle's findings.
+- `docs/status.md` — regenerated (Updated 2026-10-28 21:40 UTC, Overall WATCH, 3 open issues; no Token pulse section since no `articles/token-report-*.md` exist).
+- `memory/logs/2026-10-28.md` — created with this run's findings.
 
-`HEARTBEAT_OK · STATUS_PAGE=WATCH`
+**Output marker:** `HEARTBEAT_OK · STATUS_PAGE=WATCH`
 
-**Follow-up:** ISS-003 (scheduler dispatching intermittently) remains the root cause of the recurring WATCH tier and should be addressed by a repair skill — the scheduled daily skills keep missing slots.
+**Follow-up needed:** ISS-003 (scheduler) remains the root blocker — autoresearch and agent-buzz have not dispatched on schedule for 4–5 days. Resolving it would also unblock ISS-001/002.
