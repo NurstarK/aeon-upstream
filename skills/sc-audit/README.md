@@ -54,13 +54,27 @@ Target forms:
 
 Leaving the target empty means "pick from Aeon's trending feed", which only exists inside Aeon. Always pass a target.
 
+#### Tool permissions
+
+If you restrict Bash with Aeon's allowed-tools list rather than allowing it unrestricted, add `Bash(command -v:*)`. Every toolchain step checks for its tool with `command -v slither` / `forge` / `medusa`. Under Aeon's list those checks are denied, so Slither and the fuzz step get skipped and the coverage manifest reports `partial`. Adding only that one rule fixed it in review: Slither ran, and Medusa falsified the vault invariant with a single `claimBonus` call.
+
+Even with that rule, `cp`, `rm` and chained `cd ... &&` calls are still refused in that mode. Fixture mode copies the fixture with `cp`, so allow `Bash(cp:*)` too, or approve it when prompted in an interactive session.
+
 ### 3. Read the output
 
 The report is written to `memory/reports/<slug>-<date>.md`. It has an executive summary, scope, methodology, the threat model and invariants, findings with severity and fix, refuted candidates, and coverage and limitations. Alongside it you get a machine-readable coverage manifest in `memory/coverage/` and a log line in `memory/logs/`.
 
 ## What works outside Aeon
 
-These results come from a test run on 2026-10-28: Claude Code headless (`claude -p`) on macOS, target `fixture:vault`, no Aeon files present apart from the two skill folders.
+These results come from a test run on 2026-10-28: Claude Code headless (`claude -p --allowedTools "Bash Read Write Edit Glob Grep"`, so Bash unrestricted) on macOS, target `fixture:vault`, no Aeon files present apart from the two skill folders.
+
+Tools on that machine:
+
+- Slither, solc-select and crytic-compile: none were preinstalled. The skill installed `slither-analyzer`, `solc-select` and `crytic-compile` into a venv itself, and solc-select fetched solc 0.8.28.
+- `forge`: installed but broken, because `libusb` was missing. The compile failed, so Slither reported `compile-fail`.
+- Medusa and Echidna: not installed, so the fuzz step was skipped.
+
+A reviewer re-ran the README in a clean repo under Aeon's allowed-tools list plus `Bash(command -v:*)`. There Slither ran and Medusa falsified the vault invariant, so the S4 and S6.5 rows below are confirmed with tools present.
 
 | Step | Outside Aeon | Notes |
 |---|---|---|
@@ -68,10 +82,10 @@ These results come from a test run on 2026-10-28: Claude Code headless (`claude 
 | S2 clone / copy / fetch | Works | Repo mode runs `gh repo fork` (forks into your account). Swap in `gh repo clone` if you prefer. |
 | S2b on-chain source fetch | Works | Replace `./secretcurl` with plain `curl` and your own `ETHERSCAN_API_KEY`. Sourcify and Blockscout need no key. |
 | S3 toolchain | Works | Install the tools yourself (above). `FOUNDRY_FFI=false` hardening still applies. |
-| S4 Slither | Works when the target compiles | On the test machine, Slither degraded to `compile-fail` because the local `forge` binary was broken. The skill then continued as designed. |
+| S4 Slither | Works when the target compiles | On the test machine, Slither degraded to `compile-fail` because the local `forge` binary was broken, and the skill continued as designed. Confirmed working in review once `Bash(command -v:*)` was allowed. |
 | S5.0 threat model, S5 agentic review | Works | The core of the skill; needs no tools. The test run found the planted critical bug. |
 | S6 triage and adversarial verification | Works | Follows the triage bar in `vuln-scanner` §A4/§A4.5, so install that folder too. In the test run it refuted 2 false candidates. |
-| S6.5 fuzz arm | Works only with forge + Medusa/Echidna installed | It was skipped in the test run because they weren't available. With them present it's the same commands as inside Aeon. |
+| S6.5 fuzz arm | Works with forge + Medusa/Echidna installed | Skipped in the 2026-10-28 run (not installed). Confirmed in review: Medusa falsified the vault invariant once `Bash(command -v:*)` was allowed. |
 | S7 disclosure | Partly | The bounty-platform search and staging a draft in `memory/pending-disclosures/` work. Auto-filing GitHub private advisories and sending email depend on Aeon's `vuln-scanner` routing, `./secretcurl` and Resend keys. Outside Aeon, treat every finding as operator-gated: review the draft and submit it yourself. |
 | S8 dedup ledger and coverage manifest | Works | Plain files under `memory/`. |
 | S9 report | Works | The `./notify` alert is Aeon-only; skip it. The report itself is the output. |
