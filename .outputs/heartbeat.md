@@ -1,23 +1,21 @@
 Heartbeat complete.
 
+`HEARTBEAT_OK · STATUS_PAGE=WATCH` — no notification sent (dedup).
+
 ## Summary
 
-Ran the full heartbeat check for the 20:00 UTC slot (fired ~21:40 UTC on 2026-10-28).
+Ran the heartbeat ambient check for the 14:00 UTC slot (fired ~14:14 UTC, 2026-10-29).
 
-**Findings by priority:**
-- **P0 (failed/stuck skills):** 🟢 clear — all 3 tracked skills show `last_status: success`, `success_rate: 1.0`, zero consecutive failures. Heartbeat self-check ~25h since last success, under the 36h threshold.
-- **P1 (PRs/issues):** 🟢 clear — `gh pr list` and `gh issue list` both empty.
-- **P2 (flagged memory):** only template-default "Next Priorities"; nothing new.
-- **P3 (missing scheduled skills):** 🟡 autoresearch (~134h stale) and agent-buzz (~100h stale) both past 2× their daily interval — missed slots, continuation of **ISS-003** (intermittent scheduler dispatch).
+**Checks:**
+- **P0 (failed/stuck skills) — clear.** All three enabled skills (autoresearch, agent-buzz, heartbeat) show `last_status: success`, `success_rate: 1.0`, `consecutive_failures: 0`. heartbeat self-check: last success ~16.5h ago, under the 36h threshold.
+- **P1 — clear.** No open PRs, no open GitHub issues.
+- **P3 — one skill stale:** agent-buzz (daily 17:30) last succeeded 2026-10-24, ~116h ago (>2x interval) — continuation of ISS-002/ISS-003. **autoresearch recovered** — it dispatched on schedule today at 07:10, so it's no longer stale.
+- **Open issues:** ISS-001, ISS-002, ISS-003 (all high) → drives the overall **🟡 WATCH** verdict.
 
-**Overall verdict:** 🟡 WATCH — driven by 3 open high-severity issues (ISS-001/002/003) and the two stale daily skills.
-
-**Notification:** SKIPPED per dedup — every WATCH driver is a continuation of ISS-003, already covered in the 10-26/10-27 logs, with no new or worsening P0. No new issue filed (duplicate).
+**Notification:** Skipped per dedup — no new or worsening P0; all WATCH drivers are continuations already logged within 48h, and autoresearch's recovery is an improvement, not an escalation.
 
 **Files modified:**
-- `docs/status.md` — regenerated (Updated 2026-10-28 21:40 UTC, Overall WATCH, 3 open issues; no Token pulse section since no `articles/token-report-*.md` exist).
-- `memory/logs/2026-10-28.md` — created with this run's findings.
+- `docs/status.md` — regenerated: Overall 🟡 WATCH, Updated 2026-10-29 14:14 UTC, 3 open issues, next run agent-buzz 17:30 UTC. Token pulse section omitted (no `articles/token-report-*.md` exists).
+- `memory/logs/2026-10-29.md` — appended heartbeat findings and status-page verdict.
 
-**Output marker:** `HEARTBEAT_OK · STATUS_PAGE=WATCH`
-
-**Follow-up needed:** ISS-003 (scheduler) remains the root blocker — autoresearch and agent-buzz have not dispatched on schedule for 4–5 days. Resolving it would also unblock ISS-001/002.
+**Follow-up:** No new action from me this cycle. The open loops remain ISS-001 (autoresearch var=Agents misconfig), ISS-002 (agent-buzz XAI_API_KEY unset), and ISS-003 (intermittent scheduler dispatch) — all tracked and owned by the repair skills. The status page lands on `main` via the workflow's auto-commit step.
