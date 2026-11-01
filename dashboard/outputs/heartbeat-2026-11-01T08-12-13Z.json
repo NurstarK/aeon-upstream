@@ -1,0 +1,194 @@
+{
+  "root": "card_heartbeat",
+  "state": {},
+  "elements": {
+    "card_heartbeat": {
+      "type": "Card",
+      "props": {
+        "title": "heartbeat",
+        "description": "Scheduler Status"
+      },
+      "children": [
+        "alert_blackout",
+        "sep1",
+        "stack_dispatches",
+        "sep2",
+        "stack_timing",
+        "sep3",
+        "stack_issues",
+        "sep4",
+        "text_conclusion"
+      ]
+    },
+    "alert_blackout": {
+      "type": "Alert",
+      "props": {
+        "type": "warning",
+        "title": "WATCH — Scheduler blackout worsening",
+        "message": "ISS-003: No dispatches fired across all of 2026-10-31"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "stack_dispatches": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading_dispatches",
+        "text_dispatch_list",
+        "text_dispatch_context"
+      ]
+    },
+    "heading_dispatches": {
+      "type": "Heading",
+      "props": {
+        "text": "Failed Dispatches",
+        "level": "h3"
+      }
+    },
+    "text_dispatch_list": {
+      "type": "Text",
+      "props": {
+        "text": "2026-10-31: heartbeat 08/14/20 skipped, autoresearch 07:00 skipped, agent-buzz 17:30 skipped. 2026-11-01: autoresearch 07:00 skipped",
+        "variant": "body"
+      }
+    },
+    "text_dispatch_context": {
+      "type": "Text",
+      "props": {
+        "text": "This 08:00 heartbeat is the first run since 2026-10-30 20:40 UTC",
+        "variant": "lead"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "stack_timing": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading_timing",
+        "grid_metrics"
+      ]
+    },
+    "heading_timing": {
+      "type": "Heading",
+      "props": {
+        "text": "Timing Metrics",
+        "level": "h3"
+      }
+    },
+    "grid_metrics": {
+      "type": "Grid",
+      "props": {
+        "columns": 2,
+        "gap": "md"
+      },
+      "children": [
+        "stat_heartbeat_check",
+        "stat_autoresearch_stale"
+      ]
+    },
+    "stat_heartbeat_check": {
+      "type": "Stat",
+      "props": {
+        "label": "Heartbeat self-check elapsed",
+        "value": "~35.5h",
+        "delta": "near P0 edge (36h)",
+        "trend": "up"
+      }
+    },
+    "stat_autoresearch_stale": {
+      "type": "Stat",
+      "props": {
+        "label": "autoresearch staleness",
+        "value": "~49h",
+        "delta": "newly stale",
+        "trend": "up"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "stack_issues": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading_issues",
+        "badges_group"
+      ]
+    },
+    "heading_issues": {
+      "type": "Heading",
+      "props": {
+        "text": "Open High-Severity Issues",
+        "level": "h3"
+      }
+    },
+    "badges_group": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "badge_iss001",
+        "badge_iss002",
+        "badge_iss003"
+      ]
+    },
+    "badge_iss001": {
+      "type": "Badge",
+      "props": {
+        "text": "ISS-001",
+        "variant": "destructive"
+      }
+    },
+    "badge_iss002": {
+      "type": "Badge",
+      "props": {
+        "text": "ISS-002",
+        "variant": "destructive"
+      }
+    },
+    "badge_iss003": {
+      "type": "Badge",
+      "props": {
+        "text": "ISS-003",
+        "variant": "destructive"
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "text_conclusion": {
+      "type": "Text",
+      "props": {
+        "text": "No skill marked failed — this is a dispatch-layer outage, not a skill fault",
+        "variant": "caption"
+      }
+    }
+  }
+}
