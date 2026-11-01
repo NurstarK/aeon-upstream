@@ -1,0 +1,93 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "Autoresearch",
+        "description": "Skill execution failed"
+      },
+      "children": [
+        "stack"
+      ]
+    },
+    "stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "alert",
+        "separator",
+        "matches-section",
+        "suggestion"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "props": {
+        "title": "Autoresearch aborted",
+        "message": "Skill 'Agents' not found. No skill directory skills/Agents/ exists.",
+        "type": "error"
+      }
+    },
+    "separator": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "matches-section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "matches-label",
+        "matches-badges"
+      ]
+    },
+    "matches-label": {
+      "type": "Heading",
+      "props": {
+        "text": "Closest matches:",
+        "level": "h4"
+      }
+    },
+    "matches-badges": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "badge-1",
+        "badge-2"
+      ]
+    },
+    "badge-1": {
+      "type": "Badge",
+      "props": {
+        "text": "agent-buzz",
+        "variant": "outline"
+      }
+    },
+    "badge-2": {
+      "type": "Badge",
+      "props": {
+        "text": "agent-displacement",
+        "variant": "outline"
+      }
+    },
+    "suggestion": {
+      "type": "Text",
+      "props": {
+        "text": "Re-run with an exact skill name (e.g. var=agent-buzz).",
+        "variant": "muted"
+      }
+    }
+  }
+}
