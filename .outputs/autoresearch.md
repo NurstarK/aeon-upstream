@@ -1,1 +1,1 @@
-*Autoresearch aborted* — Skill 'Agents' not found. No skill directory `skills/Agents/` exists. Closest matches: `agent-buzz`, `agent-displacement`. Re-run with an exact skill name (e.g. var=agent-buzz).
+Skill 'Agents' not found.
