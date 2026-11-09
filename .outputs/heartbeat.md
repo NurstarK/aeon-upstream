@@ -1,27 +1,24 @@
-Heartbeat complete. No notification sent — all findings are continuations of known issues.
+Heartbeat complete. `HEARTBEAT_OK · STATUS_PAGE=WATCH`
 
 ## Summary
 
-Ran the **heartbeat** skill (14:00 UTC slot, fired ~15:03 UTC — ~63m late, an ISS-003 symptom).
+Ran the full heartbeat ambient check at **2026-11-09 20:50 UTC** (the 20:00 slot firing ~50m late — an ISS-003 symptom).
 
-**Checks:**
-- **P0 (failed/stuck skills)** — clear. All three enabled skills show `last_status: success`, `consecutive_failures: 0`, `success_rate: 1.0`. Heartbeat self-check: last success ~7h ago (under 36h).
-- **P1 (PRs/issues)** — clear. `gh pr list` and `gh issue list` both empty.
-- **P2 (flagged memory)** — clear. No time-sensitive items.
-- **P3 (missing/stale skills):**
-  - `autoresearch` — ran today (~7h ago), not stale, but var=Agents misconfig persists (ISS-001).
-  - `agent-buzz` — last success 2026-10-24, ~15 days stale (ISS-002, blocked on XAI_API_KEY).
-  - `heartbeat` — 14:00 slot fired ~63m late (ISS-003).
-- **Open issues:** ISS-001, ISS-002, ISS-003 — all open (high). Count = 3.
+**Findings by priority:**
+- **P0 (failed/stuck skills):** 🟢 clear — no failures, no stuck dispatches, all `success_rate=1.0`. Heartbeat self-check `last_success` ~29.8h ago (under 36h).
+- **P1 (PRs/issues):** 🟢 clear — `gh pr list` and `gh issue list` both empty.
+- **P2 (flagged memory):** 🟢 clear — nothing time-sensitive.
+- **P3 (missing scheduled skills):** 🟡 three continuing symptoms of known issues:
+  - `agent-buzz` — last success ~16 days ago, blocked on `XAI_API_KEY` (**ISS-002**)
+  - `autoresearch` — 11-09 07:00 slot not dispatched; `var=Agents` still points to a non-existent skill (**ISS-001/ISS-003**)
+  - `heartbeat` — three slots missed before this late run (**ISS-003**)
 
-**Overall verdict: 🟡 WATCH** — no P0 flags, but P3 staleness + 3 open high issues.
+**Overall verdict:** 🟡 **WATCH** (P3 flags + 3 open high-severity issues; no P0 → not DEGRADED).
 
-**Notification:** SKIPPED — every finding is a continuation of ISS-001/ISS-002/ISS-003 already logged within the last 48h. No new or worsening P0.
+**Notification:** SKIPPED per dedup rules — every finding is a continuation of ISS-001/002/003, already covered in the last-48h logs. No fresh root cause.
 
 **Files modified:**
-- `docs/status.md` — regenerated public status page (Updated 2026-11-08 15:03 UTC, Next run: agent-buzz 17:30 UTC). Token pulse section omitted (no `token-report-*.md`).
-- `memory/logs/2026-11-08.md` — appended heartbeat log entry.
+- `docs/status.md` — regenerated public status page (Overall WATCH, Updated 2026-11-09 20:50 UTC, next run autoresearch 07:00 UTC, Token pulse section omitted since no `token-report-*.md` exists)
+- `memory/logs/2026-11-09.md` — created with the heartbeat log entry
 
-**Follow-up:** ISS-001/002/003 remain open and depend on config/secret fixes (repair skills); nothing new to escalate.
-
-HEARTBEAT_OK · STATUS_PAGE=WATCH
+**Follow-up (operator action needed, all pre-existing):** ISS-001 (fix `autoresearch` var), ISS-002 (set `XAI_API_KEY`), ISS-003 (scheduler dispatching intermittently). The status page lands on `main` via the workflow's auto-commit step.
