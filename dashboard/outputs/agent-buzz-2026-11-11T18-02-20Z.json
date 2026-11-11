@@ -1,0 +1,182 @@
+{
+  "root": "card_root",
+  "state": {},
+  "elements": {
+    "card_root": {
+      "type": "Card",
+      "props": {
+        "title": "Agent Buzz",
+        "description": "2026-11-11"
+      },
+      "children": [
+        "main_alert",
+        "sep1",
+        "summary_text",
+        "sep2",
+        "issues_section",
+        "sep3",
+        "filtering_text",
+        "sep4",
+        "metric_section",
+        "sep5",
+        "integrity_alert"
+      ]
+    },
+    "main_alert": {
+      "type": "Alert",
+      "props": {
+        "title": "No usable tweets",
+        "message": "Quiet day, no survivors.",
+        "type": "info"
+      },
+      "children": []
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "summary_text": {
+      "type": "Text",
+      "props": {
+        "text": "Fetch ran but no usable tweets were found."
+      },
+      "children": []
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "issues_section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "issues_heading",
+        "xai_issue",
+        "websearch_issue"
+      ]
+    },
+    "issues_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Issues encountered",
+        "level": "h4"
+      },
+      "children": []
+    },
+    "xai_issue": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "sm"
+      },
+      "children": [
+        "xai_text",
+        "iss002_badge"
+      ]
+    },
+    "xai_text": {
+      "type": "Text",
+      "props": {
+        "text": "X.AI x_search is unreachable (XAI_API_KEY unset)"
+      },
+      "children": []
+    },
+    "iss002_badge": {
+      "type": "Badge",
+      "props": {
+        "text": "ISS-002",
+        "variant": "outline"
+      },
+      "children": []
+    },
+    "websearch_issue": {
+      "type": "Text",
+      "props": {
+        "text": "WebSearch fallback returned only stale, metadata-less posts"
+      },
+      "children": []
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "filtering_text": {
+      "type": "Text",
+      "props": {
+        "text": "No posts met the 24h freshness + engagement threshold.",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "metric_section": {
+      "type": "Stack",
+      "props": {
+        "direction": "horizontal",
+        "gap": "md"
+      },
+      "children": [
+        "metric_label",
+        "metric_value",
+        "source_badge"
+      ]
+    },
+    "metric_label": {
+      "type": "Text",
+      "props": {
+        "text": "Candidates:",
+        "variant": "muted"
+      },
+      "children": []
+    },
+    "metric_value": {
+      "type": "Text",
+      "props": {
+        "text": "0 → 0 kept"
+      },
+      "children": []
+    },
+    "source_badge": {
+      "type": "Badge",
+      "props": {
+        "text": "websearch",
+        "variant": "secondary"
+      },
+      "children": []
+    },
+    "sep5": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      },
+      "children": []
+    },
+    "integrity_alert": {
+      "type": "Alert",
+      "props": {
+        "title": "Data integrity",
+        "message": "No data fabricated.",
+        "type": "success"
+      },
+      "children": []
+    }
+  }
+}
