@@ -1,0 +1,169 @@
+{
+  "root": "card_main",
+  "state": {},
+  "elements": {
+    "card_main": {
+      "type": "Card",
+      "props": {
+        "title": "heartbeat",
+        "description": "System health monitoring"
+      },
+      "children": [
+        "alert_status",
+        "sep1",
+        "section_scheduler",
+        "sep2",
+        "section_related",
+        "sep3",
+        "section_issues",
+        "sep4",
+        "footer_notes"
+      ]
+    },
+    "alert_status": {
+      "type": "Alert",
+      "props": {
+        "title": "DEGRADED",
+        "message": "Last ran 2026-11-09 20:51 UTC (~85h ago)",
+        "type": "error"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {}
+    },
+    "section_scheduler": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading_scheduler",
+        "text_scheduler_details",
+        "text_iss003"
+      ]
+    },
+    "heading_scheduler": {
+      "type": "Heading",
+      "props": {
+        "text": "Scheduler Issue",
+        "level": "h3"
+      }
+    },
+    "text_scheduler_details": {
+      "type": "Text",
+      "props": {
+        "text": "Scheduler skipped all 08:00/14:00/20:00 slots for 3+ days"
+      }
+    },
+    "text_iss003": {
+      "type": "Text",
+      "props": {
+        "text": "Confirms ISS-003 (intermittent dispatch) is still active"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {}
+    },
+    "section_related": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading_related",
+        "text_related_skills"
+      ]
+    },
+    "heading_related": {
+      "type": "Heading",
+      "props": {
+        "text": "Related Skills Ran Late",
+        "level": "h3"
+      }
+    },
+    "text_related_skills": {
+      "type": "Text",
+      "props": {
+        "text": "autoresearch (11-12) and agent-buzz (11-11) also ran late"
+      }
+    },
+    "sep3": {
+      "type": "Separator",
+      "props": {}
+    },
+    "section_issues": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading_issues",
+        "table_issues"
+      ]
+    },
+    "heading_issues": {
+      "type": "Heading",
+      "props": {
+        "text": "Open High-Severity Issues (3)",
+        "level": "h3"
+      }
+    },
+    "table_issues": {
+      "type": "Table",
+      "props": {
+        "columns": [
+          "Issue ID",
+          "Description"
+        ],
+        "rows": [
+          [
+            "ISS-001",
+            "autoresearch var=Agents invalid"
+          ],
+          [
+            "ISS-002",
+            "XAI_API_KEY unset"
+          ],
+          [
+            "ISS-003",
+            "scheduler (intermittent dispatch)"
+          ]
+        ]
+      }
+    },
+    "sep4": {
+      "type": "Separator",
+      "props": {}
+    },
+    "footer_notes": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "text_no_stalled",
+        "text_status_updated"
+      ]
+    },
+    "text_no_stalled": {
+      "type": "Text",
+      "props": {
+        "text": "No stalled PRs/urgent issues",
+        "variant": "muted"
+      }
+    },
+    "text_status_updated": {
+      "type": "Text",
+      "props": {
+        "text": "Status page updated",
+        "variant": "muted"
+      }
+    }
+  }
+}
