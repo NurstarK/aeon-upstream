@@ -1,0 +1,68 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "Agent Buzz",
+        "description": "2026-11-13"
+      },
+      "children": [
+        "status_text",
+        "sep1",
+        "issue_alert",
+        "sep2",
+        "fallback_section"
+      ]
+    },
+    "status_text": {
+      "type": "Text",
+      "props": {
+        "text": "Quiet day, no survivors. No tweets curated.",
+        "variant": "lead"
+      }
+    },
+    "sep1": {
+      "type": "Separator",
+      "props": {}
+    },
+    "issue_alert": {
+      "type": "Alert",
+      "props": {
+        "title": "X.AI x_search Unavailable",
+        "message": "XAI_API_KEY unset (ISS-002)",
+        "type": "warning"
+      }
+    },
+    "sep2": {
+      "type": "Separator",
+      "props": {}
+    },
+    "fallback_section": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "fallback_heading",
+        "fallback_text"
+      ]
+    },
+    "fallback_heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Fallback Search",
+        "level": "h3"
+      }
+    },
+    "fallback_text": {
+      "type": "Text",
+      "props": {
+        "text": "WebSearch fallback returned only stale posts with no engagement counts. Nothing passed the staleness + signal gates.",
+        "variant": "body"
+      }
+    }
+  }
+}

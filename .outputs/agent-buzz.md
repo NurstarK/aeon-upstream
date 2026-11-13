@@ -1,3 +1,1 @@
-*Agent Buzz — 2026-11-11*
-Quiet day, no survivors. Fetch ran but no usable tweets: X.AI x_search is unreachable (XAI_API_KEY unset, ISS-002) and the WebSearch fallback returned only stale, metadata-less posts — nothing met the 24h freshness + engagement bar. No data fabricated.
-<!-- _src: websearch · candidates: 0 → kept: 0_ -->
+Agent Buzz — 2026-11-13: quiet day, no survivors. X.AI x_search unavailable (XAI_API_KEY unset, ISS-002); WebSearch fallback returned only stale posts with no engagement counts, so nothing passed the staleness + signal gates. No tweets curated.
