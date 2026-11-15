@@ -1,22 +1,20 @@
-Heartbeat complete.
+`HEARTBEAT_OK · STATUS_PAGE=WATCH`
 
 ## Summary
 
-Ran the heartbeat ambient check for the 20:00 UTC slot (2026-11-14 20:28 UTC). **Overall: 🟡 WATCH** — no notification sent (all findings deduplicated against the last 48h of logs).
+Ran the heartbeat skill at **2026-11-15 14:05 UTC**. Overall health: **🟡 WATCH**.
 
 **Checks:**
-- **P0 (failed/stuck):** None. All 3 enabled skills (autoresearch, agent-buzz, heartbeat) show `success`, `consecutive_failures: 0`, `success_rate: 1`. Heartbeat self-check ~4.5h stale (well under 36h) → no flag.
-- **P1:** No open PRs, no urgent issues.
-- **P2:** No new flagged memory items.
-- **P3 (stale skills):** autoresearch last succeeded 2026-11-12 07:36 (~61h ago) vs daily schedule → **flagged stale**, missed 11-13 & 11-14 07:00 slots. Traces to ISS-003. agent-buzz (~27h) and heartbeat OK.
-- **Open issues:** ISS-001, ISS-002, ISS-003 — all high → drives WATCH.
+- **P0 (failed/stuck):** none. All 3 enabled skills (`autoresearch`, `agent-buzz`, `heartbeat`) report `success`, 0 consecutive failures, 100% success rate. Heartbeat self-check (~17.6h since last success) is well under the 36h threshold.
+- **P1:** no open PRs, no urgent issues.
+- **P2:** no new flagged memory items.
+- **P3 (stale):** `autoresearch` is stale (~78h since last success vs daily 2× = 48h threshold), tied to ISS-003/ISS-001. `agent-buzz` (~44.5h) is under threshold.
+- **Open issues:** ISS-001, ISS-002, ISS-003 — all open, high severity → WATCH.
 
-**Dedup → no notification:** the autoresearch-stale and ISS-003 scheduler findings were already notified/logged within 48h (11-13 DEGRADED notify + both 11-14 runs). Nothing new.
+**Notification:** none sent. Every WATCH finding (autoresearch staleness + scheduler intermittency / ISS-003) was already notified and logged within the last 48h, so per the dedup rule nothing new was surfaced.
 
 **Files modified:**
-- `docs/status.md` — regenerated (Overall 🟡 WATCH, 3 open issues, next run autoresearch 07:00 UTC, Token pulse omitted — no token-report file exists).
-- `memory/logs/2026-11-14.md` — appended the 20:00-slot entry.
+- `docs/status.md` — regenerated public status page (WATCH, updated timestamp, 3 open issues, next run agent-buzz 17:30 UTC, token pulse omitted — no token-report file).
+- `memory/logs/2026-11-15.md` — created with this run's findings.
 
-**Follow-up needed:** ISS-001/002/003 remain open and are the root of the persistent WATCH state — autoresearch misconfig (`var=Agents`), unset `XAI_API_KEY` blocking agent-buzz, and intermittent scheduler dispatch. These need operator action; heartbeat can only surface them.
-
-HEARTBEAT_OK · STATUS_PAGE=WATCH
+**Follow-up needed (operator):** the three open issues remain the root cause of the WATCH state — misconfigured `autoresearch` var (ISS-001), unset `XAI_API_KEY` for agent-buzz (ISS-002), and intermittent scheduler dispatch (ISS-003). These require operator action (config/secrets) and are unchanged.
