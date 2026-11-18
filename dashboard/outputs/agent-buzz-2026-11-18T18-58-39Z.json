@@ -1,0 +1,123 @@
+{
+  "root": "card",
+  "state": {},
+  "elements": {
+    "card": {
+      "type": "Card",
+      "props": {
+        "title": "Agent Buzz — 2026-11-18",
+        "description": "No curated drop today"
+      },
+      "children": [
+        "status-alert",
+        "separator-1",
+        "issues-heading",
+        "issues-stack",
+        "separator-2",
+        "details-heading",
+        "details-stack"
+      ]
+    },
+    "status-alert": {
+      "type": "Alert",
+      "props": {
+        "type": "warning",
+        "title": "Empty Drop",
+        "message": "Shipping an honest empty instead of invented clusters to avoid fabricating engagement numbers."
+      }
+    },
+    "separator-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "issues-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Blockers",
+        "level": "h3"
+      }
+    },
+    "issues-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "issue-1",
+        "issue-2"
+      ]
+    },
+    "issue-1": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "issue-1-text",
+        "issue-1-badge"
+      ]
+    },
+    "issue-1-text": {
+      "type": "Text",
+      "props": {
+        "text": "X.AI/Grok x_search fetch blocked in-sandbox: XAI_API_KEY env-var expansion refused"
+      }
+    },
+    "issue-1-badge": {
+      "type": "Badge",
+      "props": {
+        "text": "ISS-002",
+        "variant": "destructive"
+      }
+    },
+    "issue-2": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "issue-2-text"
+      ]
+    },
+    "issue-2-text": {
+      "type": "Text",
+      "props": {
+        "text": "WebSearch fallback found real agent tweets (SF vertical-agent meetup, ChatGPT business agents, launches) but no verifiable engagement counts — x.com returns HTTP 402 on direct fetch — cannot signal-score without fabricating numbers"
+      }
+    },
+    "separator-2": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "details-heading": {
+      "type": "Heading",
+      "props": {
+        "text": "Root Cause",
+        "level": "h3"
+      }
+    },
+    "details-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "sm"
+      },
+      "children": [
+        "root-cause-text"
+      ]
+    },
+    "root-cause-text": {
+      "type": "Text",
+      "props": {
+        "text": "ISS-002 (XAI key) still open"
+      }
+    }
+  }
+}
