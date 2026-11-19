@@ -1,0 +1,56 @@
+{
+  "root": "card-autoresearch-abort",
+  "state": {},
+  "elements": {
+    "card-autoresearch-abort": {
+      "type": "Card",
+      "props": {
+        "title": "Autoresearch — Aborted"
+      },
+      "children": [
+        "alert-main",
+        "sep-1",
+        "action-stack"
+      ]
+    },
+    "alert-main": {
+      "type": "Alert",
+      "props": {
+        "title": "Skill Not Found",
+        "message": "Skill 'Agents' not found. No skill directory matches (only agent-buzz and agent-displacement exist). Re-run with var= set to an exact skill name.",
+        "type": "error"
+      }
+    },
+    "sep-1": {
+      "type": "Separator",
+      "props": {
+        "orientation": "horizontal"
+      }
+    },
+    "action-stack": {
+      "type": "Stack",
+      "props": {
+        "direction": "vertical",
+        "gap": "md"
+      },
+      "children": [
+        "heading-available",
+        "text-skills"
+      ]
+    },
+    "heading-available": {
+      "type": "Heading",
+      "props": {
+        "text": "Available Skills",
+        "level": "h4"
+      }
+    },
+    "text-skills": {
+      "type": "Text",
+      "props": {
+        "text": "agent-buzz, agent-displacement",
+        "variant": "body"
+      }
+    }
+  }
+}
