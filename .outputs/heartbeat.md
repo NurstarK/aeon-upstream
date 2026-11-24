@@ -1,21 +1,22 @@
-Heartbeat run complete.
+Heartbeat complete. The status page and log are updated; no notification sent (all findings deduplicated against the last 48h).
 
 ## Summary
 
-Ran the `heartbeat` skill for the 2026-11-24 08:00 slot (executing ~09:43 UTC).
+**Verdict:** `HEARTBEAT_OK · STATUS_PAGE=WATCH` — no notification sent (all findings dedup'd).
 
-**Findings (grouped by priority):**
-- 🔴 **P0 self-check fired → DEGRADED:** heartbeat's own `last_success` is 2026-11-22 09:42 UTC (~48h ago), crossing the 36h self-check line. No skill shows `failed`/`stuck` status and all have `consecutive_failures: 0` — this is a *dispatch* failure (ISS-003 scheduler intermittent), not skill logic.
-- 🔵 **P3 stale skills:** autoresearch (~121h stale, ISS-001/ISS-003) and agent-buzz (~135h stale, ISS-002/ISS-003) both past 2× their daily interval.
-- **P1/P2:** no open/stalled PRs, no urgent issues, no new flagged memory follow-ups.
-- **Open issues unchanged:** ISS-001, ISS-002, ISS-003 (all high).
+**Checks (run at 20:00 slot, 2026-11-24T20:22Z):**
+- **P0 failed/stuck:** none — all 3 enabled skills show `success`, `consecutive_failures: 0`, `success_rate: 1`.
+- **P0 self-check:** heartbeat last succeeded ~10.6h ago → clears the 36h line, so overall **de-escalated from this morning's 🔴 DEGRADED back to 🟡 WATCH**.
+- **P1:** no open PRs, no urgent issues.
+- **P2:** no new flagged memory items.
+- **P3:** `autoresearch` (~132h) and `agent-buzz` (~145h) flagged stale — both tied to existing ISS-001/002/003.
 
-**Notification:** None sent. The DEGRADED driver is the same ISS-003 scheduler symptom already logged within the last 48h (11-22) — per the dedup rule (and consistent with the 11-20 DEGRADED run), re-notifying is skipped.
+**Overall: 🟡 WATCH** (P3 staleness + 3 high-severity open issues; no P0 fired).
+
+**Dedup:** WATCH drivers all map to ISS-001/002/003 and were logged within the last 48h → notification skipped per the dedup rule.
 
 **Files modified:**
-- `docs/status.md` — regenerated, Overall 🔴 DEGRADED, 3 open issues, next run heartbeat 14:00 UTC (Token pulse omitted — no token-report file).
-- `memory/logs/2026-11-24.md` — created with full findings log.
+- `docs/status.md` — regenerated (🟡 WATCH, updated 2026-11-24 20:22 UTC, 3 open issues, next run autoresearch 07:00 UTC, Token pulse omitted — no token-report file).
+- `memory/logs/2026-11-24.md` — appended 20:00-slot heartbeat entry.
 
-**Follow-up needed:** ISS-003 (scheduler dispatching intermittently) remains the root cause driving the staleness across all three enabled skills and should be prioritized for repair; ISS-001 and ISS-002 continue to block autoresearch and agent-buzz respectively.
-
-`HEARTBEAT_OK · STATUS_PAGE=DEGRADED`
+**Follow-up needed (unchanged, pre-existing):** The root cause remains the scheduler intermittency (ISS-003) plus the autoresearch misconfig (ISS-001) and missing XAI key (ISS-002). These are repair-skill territory (skill-repair/autoresearch), not heartbeat's to close.
